@@ -275,7 +275,7 @@
           </div>
 
           <div class="code-glow rounded-xl bg-black/90 p-4 sm:p-5 border border-cyber-border">
-            <pre class="font-mono text-xs sm:text-sm text-emerald-400 overflow-x-auto whitespace-pre-wrap select-all leading-relaxed" id="cmd-display">curl -fsSL https://raw.githubusercontent.com/thanakorn30006/shadowcat/main/install.sh | bash</pre>
+            <pre class="font-mono text-xs sm:text-sm text-emerald-400 overflow-x-auto whitespace-pre-wrap select-all leading-relaxed" id="cmd-display">curl -fsSL https://raw.githubusercontent.com/thanakorn30006/shadowcat/main/get.sh | bash</pre>
           </div>
         </div>
 
@@ -447,14 +447,14 @@
       macos: {
         badge: 'Recommended for macOS Sonoma, Sequoia & M1-M4',
         cmdLabel: 'Paste this into macOS Terminal (Terminal.app, iTerm2, Warp):',
-        cmd: 'curl -fsSL https://raw.githubusercontent.com/thanakorn30006/shadowcat/main/install.sh | bash',
+        cmd: 'curl -fsSL https://raw.githubusercontent.com/thanakorn30006/shadowcat/main/get.sh | bash',
         title: 'What happens when you run this on macOS?',
         desc: 'The script clones SHADOW CAT to ~/shadowcat, creates a local Python 3 venv, links the `shadowcat` executable to your shell PATH (/usr/local/bin or ~/.local/bin), and opens your default browser at http://localhost:8000.'
       },
       linux: {
         badge: 'Tested on Kali Linux 2024.x, Ubuntu 22.04/24.04, Debian 12',
         cmdLabel: 'Paste this into your Linux Terminal:',
-        cmd: 'curl -fsSL https://raw.githubusercontent.com/thanakorn30006/shadowcat/main/install.sh | bash',
+        cmd: 'curl -fsSL https://raw.githubusercontent.com/thanakorn30006/shadowcat/main/get.sh | bash',
         title: 'What happens when you run this on Linux?',
         desc: 'The script detects your Linux package manager (APT/Pacman/DNF), configures python3-venv, installs modules in ~/shadowcat, and creates a desktop / terminal shortcut.'
       },

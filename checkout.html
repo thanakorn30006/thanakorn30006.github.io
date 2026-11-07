@@ -145,23 +145,26 @@
         <!-- Purchase -->
         <div class="bg-cyber-darker border border-cyber-border rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl glow-emerald">
           <div class="border-b border-cyber-border pb-4">
-            <h2 class="text-lg font-bold text-white font-mono">How to purchase</h2>
+            <h2 class="text-lg font-bold text-white font-mono">Get your Pro license</h2>
             <p class="text-xs text-slate-400 mt-0.5">
-              Licenses are issued manually during early access. Contact us and we'll send your
-              signed license file and payment instructions.
+              Payment is handled securely by our payment provider (you never enter card details here).
+              After checkout you'll receive your signed <code class="text-emerald-400">shadowcat.lic</code> by email.
             </p>
           </div>
 
           <!--
-            TODO (owner): replace the mailto below with your real sales email, or swap this
-            button for a hosted payment link (Stripe Payment Link / Gumroad / Lemon Squeezy).
-            Do NOT add a client-side card form here — this is a static site and cannot process
-            payments securely.
+            The purchase URL is configured ONCE in site-core.js (const BUY_URL) and applied to
+            every <a data-buy> automatically. Set it to your real Gumroad / Lemon Squeezy product
+            link. href="pricing.html" is only the no-JavaScript fallback.
           -->
-          <a href="mailto:sales@example.com?subject=SHADOW%20CAT%20Pro%20Operator%20License"
+          <a data-buy href="pricing.html"
              class="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-mono font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-emerald-500/20">
-            Email us to purchase &rarr;
+            Buy Pro Operator — $199 &rarr;
           </a>
+          <p class="text-[11px] text-slate-500 font-mono text-center">
+            Questions before buying?
+            <a href="mailto:sales@example.com" class="text-emerald-400 hover:underline">Email us</a>.
+          </p>
 
           <div class="grid grid-cols-2 gap-3 text-xs font-mono pt-1">
             <div class="p-4 rounded-xl bg-cyber-card border border-cyber-border space-y-1">

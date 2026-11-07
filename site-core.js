@@ -10,6 +10,15 @@
 (function () {
   'use strict';
 
+  // ============================================================================
+  //  PURCHASE LINK — single source of truth for the "Buy Pro" buttons.
+  //  >>> SET THIS to your real product URL once you create the product <<<
+  //      Gumroad:       https://<username>.gumroad.com/l/<permalink>
+  //      Lemon Squeezy: https://<store>.lemonsqueezy.com/buy/<uuid>
+  //  Every <a data-buy> on the site is pointed here automatically.
+  // ============================================================================
+  const BUY_URL = 'https://thanakorn30006.gumroad.com/l/shadowcat-pro';
+
   // 1. ANTI-CLICKJACKING PROTECTION (Client-Side Fallback)
   if (window.top !== window.self) {
     try {
@@ -190,6 +199,13 @@
         const menu = document.getElementById('mobile-nav-menu');
         if (menu) menu.classList.add('hidden');
       });
+    });
+
+    // Point every "Buy Pro" link at the configured purchase URL
+    document.querySelectorAll('a[data-buy]').forEach((a) => {
+      a.href = BUY_URL;
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener');
     });
 
     // Initialize Cookie Banner after slight delay
