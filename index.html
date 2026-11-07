@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com https://js.stripe.com; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com https://js.stripe.com; img-src 'self' data: https:; connect-src 'self' http://localhost:8000 ws://localhost:8000 https://api.stripe.com; frame-src 'self' https://js.stripe.com; base-uri 'self'; form-action 'self';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" type="image/png" href="logo-mark.png" />
+  <title>SHADOW CAT — Autonomous Cyber Operations & Tactical CTF Suite</title>
+  
+  <!-- SEO & Search Engine Optimization -->
+  <meta name="description" content="SHADOW CAT is an enterprise-grade tactical CTF and cyber operations suite. Features automated WAF evasion, JS secret hunting, PCAP forensics, 20+ crypto decoders, RSA factoring, and reverse shell generators." />
+  <meta name="keywords" content="CTF tools, cybersecurity platform, digital forensics, PCAP analyzer, WAF evasion, payload mutator, reverse shell generator, cryptanalysis decoder, RSA solver, shadowcat, local CTF assistant" />
+  <meta name="author" content="SHADOW CAT Security Team" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Discord Previews -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://thanakorn30006.github.io/" />
+  <meta property="og:title" content="SHADOW CAT — Autonomous Cyber Operations & Tactical CTF Suite" />
+  <meta property="og:description" content="Tactical local cyber operations suite. Digital forensics, cryptanalysis, WAF evasion, and binary exploitation." />
+  <meta property="og:image" content="screenshot-payloads.png" />
+
+  <!-- Twitter Previews -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SHADOW CAT — Cyber Operations Suite" />
+  <meta name="twitter:description" content="Air-gapped all-in-one local CTF suite. Install via terminal in 15 seconds." />
+  <meta name="twitter:image" content="screenshot-payloads.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Fira Code', 'monospace'],
+          },
+          colors: {
+            cyber: {
+              black: 'var(--bg-primary)',
+              darker: 'var(--bg-secondary)',
+              card: 'var(--bg-card)',
+              border: 'var(--border-color)',
+              borderHover: 'var(--border-hover)',
+              emerald: '#10b981',
+              cyan: '#06b6d4',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Site Core Styling & Scripts -->
+  <link rel="stylesheet" href="site-core.css" />
+  <script src="site-core.js"></script>
+  
+  <style>
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #070b14; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #334155; }
+    
+    .glow-emerald {
+      box-shadow: 0 0 50px -10px rgba(16, 185, 129, 0.15);
+    }
+    .code-glow {
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(16, 185, 129, 0.05);
+    }
+  </style>
+
+  <!-- Mobile Theme & Web App Manifest -->
+  <meta name="theme-color" content="#04070d" />
+  <link rel="canonical" href="https://thanakorn30006.github.io/" />
+  <link rel="manifest" href="manifest.json" />
+  <meta property="og:site_name" content="SHADOW CAT Cyber Suite" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Structured Data JSON-LD for Google Rich Snippets & Star Ratings -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://thanakorn30006.github.io/#software",
+        "name": "SHADOW CAT",
+        "operatingSystem": "macOS Sonoma/Sequoia, Linux Ubuntu/Kali/Debian, Windows 10/11, Docker",
+        "applicationCategory": "SecurityApplication",
+        "softwareVersion": "1.2.0",
+        "downloadUrl": "https://thanakorn30006.github.io/download.html",
+        "description": "Enterprise-grade air-gapped tactical cyber defense, digital forensics, cryptanalysis, and web exploitation suite for CTF players and red teams.",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "ratingCount": "142",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "lowPrice": "0",
+          "highPrice": "199",
+          "offerCount": "3"
+        },
+        "screenshot": [
+          "https://thanakorn30006.github.io/screenshot-payloads.png",
+          "https://thanakorn30006.github.io/screenshot-forensics.png",
+          "https://thanakorn30006.github.io/screenshot-crypto.png",
+          "https://thanakorn30006.github.io/screenshot-web.png"
+        ],
+        "featureList": [
+          "100% Air-Gapped Local Single-Port Architecture",
+          "20 Core Security Analysis Engines",
+          "Automated WAF Evasion and 14 Mutation Vectors",
+          "PCAP Network Stream Dissection and Windows EVTX Parser",
+          "Multi-Cipher Cryptanalysis with 20+ Auto-Detect Decoders",
+          "Interactive Reverse Shell and Exploit Payload Synchronizer"
+        ],
+        "author": {
+          "@type": "Organization",
+          "name": "SHADOW CAT Security Team",
+          "url": "https://thanakorn30006.github.io/"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://thanakorn30006.github.io/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does SHADOW CAT require an active internet connection?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Once downloaded, SHADOW CAT operates 100% offline and air-gapped. All analysis, cryptanalysis, and packet carving engines execute entirely in local RAM with zero telemetry."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use SHADOW CAT during CTF competitions and authorized pentests?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. SHADOW CAT was built by competitive CTF finalists and red team operators. The Community edition is free forever for CTF competitors, academic researchers, and students."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I install SHADOW CAT on macOS, Linux, or Windows?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Installation takes approximately 15 seconds. On macOS and Linux, execute 'curl -fsSL https://raw.githubusercontent.com/thanakorn30006/shadowcat/main/install.sh | bash'. On Windows, run 'irm https://raw.githubusercontent.com/thanakorn30006/shadowcat/main/install.ps1 | iex' in PowerShell."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does SHADOW CAT collect or transmit target data to third parties?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. SHADOW CAT strictly enforces a Zero-Telemetry policy. No packets leave localhost unless you explicitly target an authorized machine during assessment operations."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="bg-cyber-black text-slate-200 font-sans antialiased selection:bg-emerald-500 selection:text-black">
+
+  <!-- ============================================================== -->
+  <!-- 1. NAVIGATION BAR -->
+  <!-- ============================================================== -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-cyber-black/90 border-b border-cyber-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="logo-mark.png" alt="SHADOW CAT" class="h-9 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform" />
+        <div class="flex flex-col">
+          <div class="font-mono font-bold tracking-tight text-sm text-white flex items-center gap-1.5 leading-none">
+            <span>SHADOW</span>
+            <span class="text-emerald-400">CAT</span>
+          </div>
+          <span class="text-[9px] font-mono text-slate-400 mt-0.5">Cyber Operations Suite</span>
+        </div>
+      </a>
+
+      <!-- Nav Links -->
+      <nav class="hidden md:flex items-center gap-6 text-xs font-medium text-slate-300">
+        <a href="index.html" class="text-emerald-400 font-semibold border-b-2 border-emerald-400 pb-1">Overview</a>
+        <a href="download.html" class="hover:text-emerald-400 transition-colors">Download</a>
+        <a href="docs.html" class="hover:text-emerald-400 transition-colors">Documentation</a>
+        <a href="pricing.html" class="hover:text-emerald-400 transition-colors">Pricing</a>
+        <a href="about.html" class="hover:text-emerald-400 transition-colors">About Us</a>
+        <a href="security.html" class="hover:text-emerald-400 transition-colors">Security Policy</a>
+      </nav>
+
+      <!-- Action & Theme Controls -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Theme Switcher Button -->
+        <button type="button" class="theme-toggle-btn cursor-pointer" title="Toggle Dark/Light Mode">
+          
+        </button>
+
+        <a href="download.html" class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs transition-all shadow-md shadow-emerald-500/20">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          <span>Install Suite</span>
+        </a>
+
+        <!-- Mobile Navigation Menu Toggle Button -->
+        <button type="button" id="mobile-menu-toggle" aria-expanded="false" aria-label="Toggle navigation menu" class="md:hidden p-2 rounded-lg text-slate-300 hover:text-white bg-cyber-darker border border-cyber-border transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Responsive Dropdown Navigation -->
+    <div id="mobile-nav-menu" class="hidden md:hidden border-t border-cyber-border bg-cyber-black/95 backdrop-blur-md px-4 py-3 space-y-1 font-mono text-xs">
+      <a href="index.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Overview</a>
+      <a href="download.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Download</a>
+      <a href="docs.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Documentation</a>
+      <a href="pricing.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Pricing</a>
+      <a href="about.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">About Us</a>
+      <a href="security.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Security Policy</a>
+      <div class="pt-2 sm:hidden border-t border-cyber-border">
+        <a href="download.html" class="flex items-center justify-center gap-2 w-full py-2 rounded-lg bg-emerald-500 text-black font-semibold text-xs">
+          <span>Install Suite</span>
+        </a>
+      </div>
+    </div>
+    </div>
+  </header>
+
+  <!-- ============================================================== -->
+  <!-- 2. HERO SECTION -->
+  <!-- ============================================================== -->
+  <section class="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden">
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight">
+        Autonomous Cyber Operations & <br class="hidden sm:block" />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
+          Tactical CTF Suite
+        </span>
+      </h1>
+
+      <p class="max-w-2xl mx-auto text-slate-400 text-sm sm:text-base leading-relaxed">
+        An enterprise-grade local tactical suite for security researchers, ethical hackers, and CTF teams.
+        Automate <strong class="text-slate-200">WAF Evasion</strong>, <strong class="text-slate-200">JS Secret Hunting</strong>, <strong class="text-slate-200">Digital Forensics</strong>, <strong class="text-slate-200">Cryptanalysis</strong>, and <strong class="text-slate-200">Binary Exploitation</strong> with zero cloud dependency.
+      </p>
+
+      <!-- ============================================================== -->
+      <!-- 3. TERMINAL INSTALLATION CENTER -->
+      <!-- ============================================================== -->
+      <div id="install" class="pt-6 max-w-3xl mx-auto text-left">
+        <div class="rounded-2xl bg-cyber-darker border border-cyber-border shadow-2xl overflow-hidden glow-emerald">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-cyber-border px-4 py-3 bg-cyber-card gap-3">
+            <div class="flex items-center gap-2">
+              <div class="flex gap-1.5">
+                <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+              </div>
+              <span class="text-xs font-mono text-slate-400 ml-2">shadowcat-quick-install</span>
+            </div>
+
+            <!-- OS Switcher Tabs -->
+            <div class="flex items-center gap-1 bg-cyber-black p-1 rounded-lg border border-cyber-border text-xs font-mono">
+              <button onclick="setTab('unix')" id="tab-unix" class="tab-btn px-3 py-1 rounded-md font-semibold bg-emerald-500 text-black transition-all">
+                macOS / Linux
+              </button>
+              <button onclick="setTab('windows')" id="tab-windows" class="tab-btn px-3 py-1 rounded-md font-medium text-slate-400 hover:text-white transition-all">
+                Windows (PowerShell)
+              </button>
+              <button onclick="setTab('pip')" id="tab-pip" class="tab-btn px-3 py-1 rounded-md font-medium text-slate-400 hover:text-white transition-all">
+                pip / pipx
+              </button>
+              <button onclick="setTab('docker')" id="tab-docker" class="tab-btn px-3 py-1 rounded-md font-medium text-slate-400 hover:text-white transition-all">
+                Docker
+              </button>
+            </div>
+          </div>
+
+          <!-- Code Box with Copy Button -->
+          <div class="p-5 font-mono text-xs sm:text-sm flex items-center justify-between gap-4 bg-cyber-black code-glow">
+            <div class="overflow-x-auto py-1 flex items-center">
+              <span class="text-emerald-400 select-none mr-3 font-bold">$</span>
+              <span id="cmd-display" class="text-slate-100 select-all whitespace-nowrap">curl -fsSL https://raw.githubusercontent.com/thanakorn30006/shadowcat/main/install.sh | bash</span>
+            </div>
+
+            <button onclick="copyInstallCmd()" class="px-4 py-2.5 rounded-xl bg-cyber-card hover:bg-slate-800 border border-cyber-border hover:border-emerald-500/50 text-white font-sans text-xs font-semibold flex items-center gap-2 shrink-0 transition-all shadow">
+              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+              <span id="copy-text">Copy Command</span>
+            </button>
+          </div>
+
+          <!-- Footer Status Bar -->
+          <div class="px-5 py-2.5 bg-cyber-card border-t border-cyber-border text-[11px] font-mono text-slate-400 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              <span id="tab-desc">Auto-configures virtualenv & launches browser at http://localhost:8000</span>
+            </div>
+            <a href="download.html" class="text-emerald-400 font-semibold hover:underline">Full Step-by-Step Guide →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Engine Statistics -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto pt-6 font-mono text-xs">
+        <div class="bg-cyber-card border border-cyber-border p-3.5 rounded-xl">
+          <div class="text-2xl font-bold text-white">11</div>
+          <div class="text-slate-400 text-[11px] mt-0.5">Core Solvers & Modules</div>
+        </div>
+        <div class="bg-cyber-card border border-cyber-border p-3.5 rounded-xl">
+          <div class="text-2xl font-bold text-emerald-400">20+</div>
+          <div class="text-slate-400 text-[11px] mt-0.5">Auto Crypt Decoders</div>
+        </div>
+        <div class="bg-cyber-card border border-cyber-border p-3.5 rounded-xl">
+          <div class="text-2xl font-bold text-cyan-400">14</div>
+          <div class="text-slate-400 text-[11px] mt-0.5">WAF Bypass Mutations</div>
+        </div>
+        <div class="bg-cyber-card border border-cyber-border p-3.5 rounded-xl">
+          <div class="text-2xl font-bold text-purple-400">0%</div>
+          <div class="text-slate-400 text-[11px] mt-0.5">Cloud Leaks (Air-Gapped)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 3.5 REAL PRODUCTION APPLICATION COCKPIT SHOWCASE -->
+  <!-- ============================================================== -->
+  <section class="py-14 relative overflow-hidden bg-cyber-black">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      
+      <div class="text-center space-y-3 max-w-3xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 border border-emerald-800 text-emerald-400 text-xs font-mono font-semibold">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          [LIVE APPLICATION INTERFACE]
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Real Operations Cockpit in Action
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto">
+          Screenshots captured directly from the running local daemon on <code class="text-emerald-400 font-mono">http://localhost:8000</code>. Pure air-gapped single-port architecture with responsive tactical controls.
+        </p>
+      </div>
+
+      <!-- Screenshot Switcher Controls -->
+      <div class="flex flex-wrap items-center justify-center gap-2 pt-2" role="tablist">
+        <button onclick="switchShowcase('payloads')" id="showcase-btn-payloads" class="showcase-tab px-3.5 py-1.5 rounded-lg font-mono text-xs font-semibold bg-emerald-500 text-black shadow transition-all cursor-pointer">
+          [Payloads & RevShells]
+        </button>
+        <button onclick="switchShowcase('forensics')" id="showcase-btn-forensics" class="showcase-tab px-3.5 py-1.5 rounded-lg font-mono text-xs font-semibold bg-cyber-card border border-cyber-border text-slate-400 hover:text-white transition-all cursor-pointer">
+          [Artifact Forensics & PCAP]
+        </button>
+        <button onclick="switchShowcase('crypto')" id="showcase-btn-crypto" class="showcase-tab px-3.5 py-1.5 rounded-lg font-mono text-xs font-semibold bg-cyber-card border border-cyber-border text-slate-400 hover:text-white transition-all cursor-pointer">
+          [Cryptanalysis & 20+ Decoders]
+        </button>
+        <button onclick="switchShowcase('web')" id="showcase-btn-web" class="showcase-tab px-3.5 py-1.5 rounded-lg font-mono text-xs font-semibold bg-cyber-card border border-cyber-border text-slate-400 hover:text-white transition-all cursor-pointer">
+          [Web Security & WAF]
+        </button>
+      </div>
+
+      <!-- High-End Desktop Window Frame -->
+      <div class="rounded-2xl bg-cyber-darker border border-cyber-border shadow-2xl overflow-hidden glow-emerald">
+        <!-- Window Title Bar -->
+        <div class="flex items-center justify-between px-4 py-3 bg-cyber-card border-b border-cyber-border">
+          <div class="flex items-center gap-2">
+            <div class="flex gap-1.5">
+              <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+            </div>
+            <span class="text-xs font-mono text-slate-400 ml-2 hidden sm:inline">SHADOW CAT Air-Gapped Cockpit</span>
+          </div>
+          
+          <div class="flex items-center gap-2 bg-cyber-black px-4 py-1 rounded-md border border-cyber-border text-[11px] font-mono text-emerald-400 max-w-sm truncate">
+            <svg class="w-3 h-3 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            <span id="showcase-url">http://127.0.0.1:8000/#payloads</span>
+          </div>
+
+          <div class="flex items-center gap-2 text-[10px] font-mono text-slate-400">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>AIR-GAPPED 100%</span>
+          </div>
+        </div>
+
+        <!-- Window Viewport (Image Display) -->
+        <div class="relative bg-black group overflow-hidden">
+          <img id="showcase-img" src="screenshot-payloads.png" alt="SHADOW CAT Real Production Interface" class="w-full h-auto object-cover transition-opacity duration-200 shadow-inner" />
+          
+          <div class="absolute bottom-3 left-4 right-4 sm:left-6 sm:right-auto bg-[#0a101d]/90 backdrop-blur-md border border-cyber-border px-3.5 py-2 rounded-xl text-xs font-mono text-slate-300 flex items-center gap-2.5 shadow-lg">
+            <span class="text-emerald-400 font-bold">[ACTIVE MODULE]</span>
+            <span id="showcase-desc">Exploit Payloads & Post-Exploitation Reference — Live LHOST/LPORT Sync</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 4. WHY SHADOW CAT (The Problem vs The Solution) -->
+  <!-- ============================================================== -->
+  <section class="py-20 bg-cyber-darker border-y border-cyber-border">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          Why Fragmented Security Tools Slow You Down
+        </h2>
+        <p class="text-slate-400 text-xs sm:text-sm">
+          Stop juggling 5 separate software windows during timed CTF events and assessments.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- The Problem -->
+        <div class="problem-card bg-cyber-card border border-red-500/30 p-6 rounded-2xl space-y-4">
+          <div class="inline-flex items-center gap-2 text-xs font-mono font-bold text-red-400 uppercase">
+            <span>[FRAGMENTED]</span> The Fragmented Workflow (Slow & Leaky)
+          </div>
+          <ul class="space-y-3 text-xs sm:text-sm text-slate-400 leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-red-400 font-bold">•</span>
+              <span>Running <strong>CyberChef</strong> in a browser tab, <strong>Wireshark</strong> for packet streams, <strong>Burp Suite</strong> for HTTP requests, and dozens of scattered Python scripts.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-400 font-bold">•</span>
+              <span>Pasting sensitive challenge tokens or internal artifacts into cloud-based online decoders, risking data leakage.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-400 font-bold">•</span>
+              <span>Getting blocked by WAF rules and manually formatting comment splits and encoding variants line by line.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- The Solution -->
+        <div class="solution-card bg-cyber-card border-2 border-emerald-500/40 p-6 rounded-2xl space-y-4 glow-emerald">
+          <div class="inline-flex items-center gap-2 text-xs font-mono font-bold text-emerald-400 uppercase">
+            <span>[UNIFIED]</span> The Unified SHADOW CAT Advantage
+          </div>
+          <ul class="space-y-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">[+]</span>
+              <span><strong>Unified Local Workspace:</strong> WAF probing, JS secret extraction, packet stream carving, XOR brute-forcing, and RevShells in one cohesive dashboard.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">[+]</span>
+              <span><strong>Air-Gapped Privacy:</strong> Executes 100% in local RAM. Zero telemetry, zero analytics, zero external network exfiltration.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">[+]</span>
+              <span><strong>1-Click Payload Mutator:</strong> Instantly generates 14 WAF evasion variants (Comment splitting, Space evasions, Alternating case, Null bytes).</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 4.5 INTERACTIVE TACTICAL SIMULATOR (LIVE IN-BROWSER TRYOUT) -->
+  <!-- ============================================================== -->
+  <section class="py-16 bg-cyber-darker border-y border-cyber-border relative">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      
+      <div class="text-center space-y-2 max-w-2xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950 border border-cyan-800 text-cyan-400 text-xs font-mono font-semibold">
+          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+          [INTERACTIVE BROWSER SANDBOX]
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          Test-Drive Key Solvers Live
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-400">
+          Click through real operational scenarios below to see how SHADOW CAT eliminates manual work in seconds.
+        </p>
+      </div>
+
+      <!-- Simulator Container -->
+      <div class="rounded-2xl bg-cyber-card border border-cyber-border shadow-2xl overflow-hidden glow-emerald">
+        
+        <!-- Simulator Navigation Tabs -->
+        <div class="flex flex-wrap items-center justify-between border-b border-cyber-border px-4 py-2.5 bg-cyber-black gap-2">
+          <div class="flex flex-wrap items-center gap-1.5 font-mono text-xs">
+            <button onclick="runSimTab('unwrap')" id="sim-tab-unwrap" class="sim-btn px-3 py-1.5 rounded-lg bg-emerald-500 text-black font-bold transition-all cursor-pointer">
+              [1. Magic Auto-Unwrap]
+            </button>
+            <button onclick="runSimTab('cyclic')" id="sim-tab-cyclic" class="sim-btn px-3 py-1.5 rounded-lg bg-cyber-card border border-cyber-border text-slate-400 hover:text-white font-semibold transition-all cursor-pointer">
+              [2. De Bruijn Crash Offset]
+            </button>
+            <button onclick="runSimTab('stager')" id="sim-tab-stager" class="sim-btn px-3 py-1.5 rounded-lg bg-cyber-card border border-cyber-border text-slate-400 hover:text-white font-semibold transition-all cursor-pointer">
+              [3. WAF Filter Bypass]
+            </button>
+            <button onclick="runSimTab('repair')" id="sim-tab-repair" class="sim-btn px-3 py-1.5 rounded-lg bg-cyber-card border border-cyber-border text-slate-400 hover:text-white font-semibold transition-all cursor-pointer">
+              [4. Magic Byte Restorer]
+            </button>
+          </div>
+          <span class="text-[11px] font-mono text-slate-500 hidden sm:inline">100% In-Memory Simulation</span>
+        </div>
+
+        <!-- Simulator Content Area -->
+        <div class="p-6 font-mono text-xs space-y-4 bg-cyber-darker">
+          
+          <!-- TAB 1: UNWRAP -->
+          <div id="sim-pane-unwrap" class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-cyber-border pb-3">
+              <div>
+                <span class="text-white font-bold text-sm block">Scenario: Multi-Layer Obfuscated Flag</span>
+                <span class="text-slate-400 text-[11px]">Nested Hex + Base64 + ROT13 cipher</span>
+              </div>
+              <button onclick="triggerUnwrapDemo()" id="unwrap-sim-btn" class="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-bold transition-all flex items-center justify-center gap-2 shrink-0">
+                <span>Run Magic Auto-Unwrap</span>
+              </button>
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-slate-400 block text-[11px]">Input Ciphertext:</label>
+              <div class="bg-black p-3 rounded-lg border border-cyber-border text-slate-300 break-all select-all">
+                637670625047537b743373745f663134675f737563636573737d
+              </div>
+            </div>
+
+            <div id="unwrap-sim-output" class="p-4 rounded-xl bg-black/90 border border-emerald-500/40 space-y-2">
+              <div class="flex items-center justify-between text-emerald-400 font-bold">
+                <span>[SOLVED] Autonomous Decoded Sequence (2 Layers):</span>
+                <span class="text-[10px] bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded border border-emerald-800">EXEC TIME: 0.001s</span>
+              </div>
+              <div class="flex flex-wrap items-center gap-2 text-[11px] text-slate-300">
+                <span class="px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-cyan-300">L1: FROM HEX</span>
+                <span>&rarr;</span>
+                <span class="px-2 py-0.5 rounded bg-purple-950 border border-purple-800 text-purple-300">L2: ROT13</span>
+                <span>&rarr;</span>
+                <span class="text-white font-bold">picoCTF{g3st_s14t_success}</span>
+              </div>
+              <div class="p-2.5 rounded bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 font-bold text-xs select-all">
+                FLAG DISCOVERED: picoCTF{g3st_s14t_success}
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: CYCLIC -->
+          <div id="sim-pane-cyclic" class="space-y-4 hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-cyber-border pb-3">
+              <div>
+                <span class="text-white font-bold text-sm block">Scenario: AMD64 Buffer Overflow Crash Register</span>
+                <span class="text-slate-400 text-[11px]">Calculate precise control offset for RIP hijacking</span>
+              </div>
+              <button onclick="triggerCyclicDemo()" id="cyclic-sim-btn" class="px-4 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black font-bold transition-all flex items-center justify-center gap-2 shrink-0">
+                <span>Calculate Crash Offset</span>
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="text-slate-400 block text-[11px] mb-1">GDB / LLDB Crash Value:</label>
+                <div class="bg-black p-2.5 rounded border border-cyber-border text-cyan-300">
+                  0x61616167 (gaaa)
+                </div>
+              </div>
+              <div>
+                <label class="text-slate-400 block text-[11px] mb-1">Target Architecture:</label>
+                <div class="bg-black p-2.5 rounded border border-cyber-border text-white">
+                  AMD64 (64-bit / 8-byte width)
+                </div>
+              </div>
+            </div>
+
+            <div id="cyclic-sim-output" class="p-4 rounded-xl bg-black/90 border border-cyan-500/40 space-y-2">
+              <div class="flex items-center justify-between text-cyan-400 font-bold">
+                <span>[OFFSET LOCATED] Offset: 24 bytes</span>
+                <span class="text-[10px] bg-cyan-950 text-cyan-300 px-2 py-0.5 rounded border border-cyan-800">SPEED: 0.00002s</span>
+              </div>
+              <p class="text-slate-300 text-[11px]">
+                EIP/RIP instruction pointer overwritten precisely at byte 24.
+              </p>
+              <div class="p-2.5 rounded bg-cyan-950/40 border border-cyan-500/30 text-cyan-200 text-xs select-all">
+                payload = b'A' * 24 + p64(target_rip_addr)
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: STAGER -->
+          <div id="sim-pane-stager" class="space-y-4 hidden">
+            <div class="border-b border-cyber-border pb-3">
+              <span class="text-white font-bold text-sm block">Scenario: Command Injection WAF Evasion</span>
+              <span class="text-slate-400 text-[11px]">Instant synthesis of evasion stagers for parameter injection</span>
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-slate-400 block text-[11px]">Original Command:</label>
+              <div class="bg-black p-2.5 rounded border border-cyber-border text-white flex items-center justify-between">
+                <span>cat /flag.txt</span>
+                <span class="text-[10px] text-slate-500">[RAW BASH]</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              <div class="bg-black p-3 rounded-lg border border-cyber-border space-y-1">
+                <span class="text-emerald-400 font-bold text-[11px] block">Linux Base64 sh Wrapper:</span>
+                <code class="text-slate-200 block text-[11px] break-all select-all">sh -c "$(echo Y2F0IC9mbGFnLnR4dA== | base64 -d)"</code>
+              </div>
+              <div class="bg-black p-3 rounded-lg border border-cyber-border space-y-1">
+                <span class="text-yellow-400 font-bold text-[11px] block">${IFS} Space Filter Bypass:</span>
+                <code class="text-slate-200 block text-[11px] break-all select-all">cat${IFS}/flag.txt</code>
+              </div>
+              <div class="bg-black p-3 rounded-lg border border-cyber-border space-y-1">
+                <span class="text-purple-400 font-bold text-[11px] block">Python3 Exec Stager:</span>
+                <code class="text-slate-200 block text-[11px] break-all select-all">python3 -c "import base64;exec(base64.b64decode('Y2F0IC9mbGFnLnR4dA=='))"</code>
+              </div>
+              <div class="bg-black p-3 rounded-lg border border-cyber-border space-y-1">
+                <span class="text-cyan-400 font-bold text-[11px] block">Windows PowerShell -EncodedCommand:</span>
+                <code class="text-slate-200 block text-[11px] break-all select-all">powershell -nop -w hidden -enc YwBhAHQ...</code>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 4: REPAIR -->
+          <div id="sim-pane-repair" class="space-y-4 hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-cyber-border pb-3">
+              <div>
+                <span class="text-white font-bold text-sm block">Scenario: Corrupted Challenge File Header</span>
+                <span class="text-slate-400 text-[11px]">Magic byte signature reconstruction</span>
+              </div>
+              <button onclick="triggerRepairDemo()" id="repair-sim-btn" class="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-bold transition-all flex items-center justify-center gap-2 shrink-0">
+                <span>Restore Magic Bytes</span>
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="text-slate-400 block text-[11px] mb-1">Damaged File Header (corrupted.png):</label>
+                <div class="bg-black p-2.5 rounded border border-red-500/40 text-red-400">
+                  00 00 00 00 49 48 44 52 00 00 ...
+                </div>
+              </div>
+              <div>
+                <label class="text-slate-400 block text-[11px] mb-1">Diagnosis:</label>
+                <div class="bg-black p-2.5 rounded border border-cyber-border text-yellow-300">
+                  Expected PNG signature 89 50 4E 47 missing
+                </div>
+              </div>
+            </div>
+
+            <div id="repair-sim-output" class="p-4 rounded-xl bg-black/90 border border-emerald-500/40 space-y-2">
+              <div class="flex items-center justify-between text-emerald-400 font-bold">
+                <span>[HEADER RESTORED] Authentic Magic Signature Injected</span>
+                <span class="text-[10px] bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded border border-emerald-800">DOWNLOAD READY</span>
+              </div>
+              <div class="p-2.5 rounded bg-emerald-950/40 border border-emerald-500/30 text-emerald-200 text-xs select-all">
+                Repaired Prefix: 89 50 4E 47 0D 0A 1A 0A 49 48 44 52... (Valid PNG Image)
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Hard Proof Benchmark Bar -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
+        <div class="bg-cyber-card border border-cyber-border p-4 rounded-xl text-center space-y-1">
+          <div class="text-2xl font-bold font-mono text-emerald-400">0.00002s</div>
+          <div class="text-xs text-slate-300 font-medium">64-bit Cyclic Generation</div>
+          <div class="text-[10px] text-slate-500 font-mono">Microsecond Pwntools Speed</div>
+        </div>
+        <div class="bg-cyber-card border border-cyber-border p-4 rounded-xl text-center space-y-1">
+          <div class="text-2xl font-bold font-mono text-cyan-400">100% Offline</div>
+          <div class="text-xs text-slate-300 font-medium">Ed25519 Signatures</div>
+          <div class="text-[10px] text-slate-500 font-mono">Zero Cloud Telemetry</div>
+        </div>
+        <div class="bg-cyber-card border border-cyber-border p-4 rounded-xl text-center space-y-1">
+          <div class="text-2xl font-bold font-mono text-purple-400">60 Seconds</div>
+          <div class="text-xs text-slate-300 font-medium">1-Line Install Deploy</div>
+          <div class="text-[10px] text-slate-500 font-mono">Mac, Linux, Windows</div>
+        </div>
+        <div class="bg-cyber-card border border-cyber-border p-4 rounded-xl text-center space-y-1">
+          <div class="text-2xl font-bold font-mono text-yellow-400">$0 Subscriptions</div>
+          <div class="text-xs text-slate-300 font-medium">Perpetual Ownership</div>
+          <div class="text-[10px] text-slate-500 font-mono">No Recurring Fees</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 5. DEEP-DIVE 6 CORE MODULES -->
+  <!-- ============================================================== -->
+  <section id="features" class="py-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <div class="inline-block px-3 py-1 rounded-md bg-emerald-950/60 border border-emerald-800/80 text-emerald-400 text-xs font-mono font-semibold uppercase">
+        Tactical Capabilities
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Engineered for Real-World Competitions & Audits
+      </h2>
+      <p class="text-slate-400 text-xs sm:text-sm">
+        Ground-truth engineering based on real offensive CTF challenges and enterprise web audits.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- Module 1: WAF Evasion -->
+      <div class="bg-cyber-card border border-cyber-border p-7 rounded-2xl space-y-4 hover:border-emerald-500/50 transition-colors">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-xs font-bold">[WAF]</div>
+            <div>
+              <h3 class="text-base font-bold text-white">WAF Fingerprinting & Payload Mutator</h3>
+              <span class="text-[10px] font-mono text-emerald-400">Web Exploitation</span>
+            </div>
+          </div>
+        </div>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Probes targets with a single adversarial vector to detect Cloudflare, AWS WAF, Imperva, ModSecurity, or Sucuri. Automatically synthesizes 14 evasion bypasses:
+        </p>
+        <div class="bg-cyber-black border border-cyber-border p-3.5 rounded-xl font-mono text-xs text-emerald-400 space-y-1">
+          <div><span class="text-slate-500">• SQL Keyword Splitting:</span> UN/**/ION SEL/**/ECT 1,2,3--</div>
+          <div><span class="text-slate-500">• Space Evasion:</span> 1${IFS}UNION${IFS}SELECT or %0a</div>
+          <div><span class="text-slate-500">• Alternating Case:</span> 1 UnIoN sElEcT nUlL</div>
+        </div>
+      </div>
+
+      <!-- Module 2: JS Secret Hunter -->
+      <div class="bg-cyber-card border border-cyber-border p-7 rounded-2xl space-y-4 hover:border-cyan-500/50 transition-colors">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="px-2.5 py-1 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-xs font-bold">[RECON]</div>
+            <div>
+              <h3 class="text-base font-bold text-white">JavaScript Secret & Endpoint Hunter</h3>
+              <span class="text-[10px] font-mono text-cyan-400">Reconnaissance</span>
+            </div>
+          </div>
+        </div>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Parses client-side JavaScript bundles (Webpack/Vite/React) to extract credentials and hidden endpoints inadvertently exposed:
+        </p>
+        <ul class="list-disc list-inside space-y-1 text-xs text-slate-400 pl-1">
+          <li>Hidden API routes: <code class="text-slate-200">/api/v1/admin/flag</code>, <code class="text-slate-200">/graphql</code></li>
+          <li>Cloud credentials: AWS Access Keys (<code class="text-slate-200">AKIA...</code>), JWT Tokens (<code class="text-slate-200">eyJ...</code>)</li>
+          <li>Internal subnets: RFC 1918 IPs (10.x.x.x, 192.168.x.x, 172.16-31.x.x)</li>
+        </ul>
+      </div>
+
+      <!-- Module 3: Digital Forensics -->
+      <div class="bg-cyber-card border border-cyber-border p-7 rounded-2xl space-y-4 hover:border-blue-500/50 transition-colors">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="px-2.5 py-1 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-400 font-mono text-xs font-bold">[FORENSICS]</div>
+            <div>
+              <h3 class="text-base font-bold text-white">PCAP Stream & Windows EVTX Forensics</h3>
+              <span class="text-[10px] font-mono text-blue-400">Digital Forensics</span>
+            </div>
+          </div>
+        </div>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Dissect forensic evidence files without external heavy desktop software:
+        </p>
+        <ul class="list-disc list-inside space-y-1 text-xs text-slate-400 pl-1">
+          <li>Reconstructs HTTP conversations, DNS queries, and flag strings from PCAP packet dumps</li>
+          <li>Parses Windows Security Logs: Event ID 4625 (Failed Logon) and 4688 (Process Execution)</li>
+          <li>Repairs corrupted file headers by matching and patching magic bytes</li>
+          <li>Carves embedded files and packages extracted artifacts into a 1-click ZIP download</li>
+        </ul>
+      </div>
+
+      <!-- Module 4: Cryptanalysis -->
+      <div class="bg-cyber-card border border-cyber-border p-7 rounded-2xl space-y-4 hover:border-yellow-500/50 transition-colors">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="px-2.5 py-1 rounded-lg bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 font-mono text-xs font-bold">[CRYPTO]</div>
+            <div>
+              <h3 class="text-base font-bold text-white">20+ Auto Decoders & XOR 256 Matrix</h3>
+              <span class="text-[10px] font-mono text-yellow-400">Cryptanalysis</span>
+            </div>
+          </div>
+        </div>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Input an unknown cipher string, and the engine automatically ranks candidate algorithms:
+        </p>
+        <ul class="list-disc list-inside space-y-1 text-xs text-slate-400 pl-1">
+          <li>Decodes Base64, Base32, Base58, Base85, Hex, Binary, ROT13, ROT47, and Atbash</li>
+          <li>Renders a full 25-shift Caesar matrix with real-time regex flag detection (<code class="text-yellow-400">flag{...}</code>)</li>
+          <li>Brute-forces single-byte XOR keys (0-255) scored by English chi-squared frequency analysis</li>
+        </ul>
+      </div>
+
+      <!-- Module 5: JWT Studio -->
+      <div class="bg-cyber-card border border-cyber-border p-7 rounded-2xl space-y-4 hover:border-purple-500/50 transition-colors">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="px-2.5 py-1 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-400 font-mono text-xs font-bold">[AUTH]</div>
+            <div>
+              <h3 class="text-base font-bold text-white">JWT Token Security Studio</h3>
+              <span class="text-[10px] font-mono text-purple-400">Authentication</span>
+            </div>
+          </div>
+        </div>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Audit and manipulate JSON Web Tokens for authentication testing:
+        </p>
+        <ul class="list-disc list-inside space-y-1 text-xs text-slate-400 pl-1">
+          <li>1-Click signature bypass via the <code class="text-purple-400 font-mono">alg: none</code> vulnerability</li>
+          <li>Offline dictionary cracking for weak HS256 HMAC secrets (50,000 top words)</li>
+          <li>Tamper with payload claims for privilege escalation (e.g., <code class="text-slate-200">role: admin</code>)</li>
+        </ul>
+      </div>
+
+      <!-- Module 6: Reverse Shells -->
+      <div class="bg-cyber-card border border-cyber-border p-7 rounded-2xl space-y-4 hover:border-red-500/50 transition-colors">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="px-2.5 py-1 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 font-mono text-xs font-bold">[PWN]</div>
+            <div>
+              <h3 class="text-base font-bold text-white">Shellcraft & TTY Stabilizer</h3>
+              <span class="text-[10px] font-mono text-red-400">Payload Generation</span>
+            </div>
+          </div>
+        </div>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Specify your IP and Port to synthesize immediate connection payloads:
+        </p>
+        <ul class="list-disc list-inside space-y-1 text-xs text-slate-400 pl-1">
+          <li>Generates Bash, Python3 PTY, Netcat -e, Netcat mkfifo, PHP, and PowerShell payloads</li>
+          <li>Instant URL-encoding and Base64 wrapping buttons</li>
+          <li>4-Step guide to stabilize dumb shells into full interactive TTY terminals with tab-completion</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 6. COMPARISON MATRIX -->
+  <!-- ============================================================== -->
+  <section class="py-20 bg-cyber-darker border-y border-cyber-border">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <h2 class="text-2xl font-bold text-white">Tactical Comparison Matrix</h2>
+        <p class="text-xs text-slate-400">How SHADOW CAT compares to standard security tools</p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border border-cyber-border rounded-xl">
+          <thead class="bg-cyber-card text-slate-300 border-b border-cyber-border font-mono">
+            <tr>
+              <th class="p-4">Feature / Capability</th>
+              <th class="p-4 text-emerald-400 font-bold">SHADOW CAT</th>
+              <th class="p-4 text-slate-400">CyberChef</th>
+              <th class="p-4 text-slate-400">Standalone GitHub Scripts</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-cyber-border text-slate-300">
+            <tr>
+              <td class="p-4 font-bold text-white">100% Air-Gapped Local Execution</td>
+              <td class="p-4 text-emerald-400 font-bold">[+] Single Local Port (8000)</td>
+              <td class="p-4 text-yellow-400">[+] Browser Tab</td>
+              <td class="p-4 text-slate-400">[~] Varies per script</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-bold text-white">WAF Fingerprint & 14 Bypass Mutators</td>
+              <td class="p-4 text-emerald-400 font-bold">[+] Built-in</td>
+              <td class="p-4 text-red-400">[-] None</td>
+              <td class="p-4 text-slate-400">[~] Requires external tool</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-bold text-white">Client-side JS Secret & Endpoint Hunter</td>
+              <td class="p-4 text-emerald-400 font-bold">[+] Built-in (URL & Raw)</td>
+              <td class="p-4 text-red-400">[-] None</td>
+              <td class="p-4 text-slate-400">[~] Manual regex required</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-bold text-white">PCAP Packet Dissection & Artifact Carving</td>
+              <td class="p-4 text-emerald-400 font-bold">[+] 1-Click ZIP Download</td>
+              <td class="p-4 text-red-400">[-] None</td>
+              <td class="p-4 text-slate-400">[~] Requires Wireshark</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-bold text-white">Installation Simplicity</td>
+              <td class="p-4 text-emerald-400 font-bold">[+] 1 Terminal Line (One-Liner)</td>
+              <td class="p-4 text-emerald-400 font-bold">[+] Instant Web App</td>
+              <td class="p-4 text-red-400">[-] Broken dependencies</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 7. FREQUENTLY ASKED QUESTIONS -->
+  <!-- ============================================================== -->
+  <section class="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <div class="text-center space-y-2">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Frequently Asked Questions</h2>
+      <p class="text-xs sm:text-sm text-slate-400">Common questions about deployment, performance, and updates</p>
+    </div>
+
+    <div class="space-y-4 text-xs sm:text-sm">
+      <div class="bg-cyber-card border border-cyber-border rounded-xl p-5 space-y-2">
+        <h3 class="font-bold text-white text-sm">Does SHADOW CAT transmit flags or tokens to external servers?</h3>
+        <p class="text-slate-400 leading-relaxed">
+          No. SHADOW CAT executes strictly on your local loopback adapter (127.0.0.1). All calculations, decodings, and memory operations happen entirely on your machine with zero telemetry or cloud phone-home pings.
+        </p>
+      </div>
+
+      <div class="bg-cyber-card border border-cyber-border rounded-xl p-5 space-y-2">
+        <h3 class="font-bold text-white text-sm">How do I start the suite again in the future?</h3>
+        <p class="text-slate-400 leading-relaxed">
+          You do not need to re-download. If installed via our one-liner, simply open your terminal and type <code class="text-emerald-400 font-mono">shadowcat</code>, or run <code class="text-emerald-400 font-mono">cd ~/shadowcat && ./run.sh</code>.
+        </p>
+      </div>
+
+      <div class="bg-cyber-card border border-cyber-border rounded-xl p-5 space-y-2">
+        <h3 class="font-bold text-white text-sm">Can I run this without installing Node.js?</h3>
+        <p class="text-slate-400 leading-relaxed">
+          Yes. The frontend bundle is pre-compiled and served directly through our single-port FastAPI backend. You only need Python 3.9+ installed on your machine.
+        </p>
+      </div>
+
+      <div class="bg-cyber-card border border-cyber-border rounded-xl p-5 space-y-2">
+        <h3 class="font-bold text-white text-sm">Can I rebind the port from 8000?</h3>
+        <p class="text-slate-400 leading-relaxed">
+          Yes. Pass the <code class="text-emerald-400 font-mono">-p</code> flag: <code class="text-emerald-400 font-mono">shadowcat -p 8888</code> or <code class="text-emerald-400 font-mono">./run.sh --port 8888</code>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 8. BOTTOM CONVERSION BANNER & RISK-FREE GUARANTEE -->
+  <!-- ============================================================== -->
+  <section class="py-20 bg-gradient-to-b from-cyber-black to-cyber-darker border-t border-cyber-border text-center relative overflow-hidden">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 relative z-10">
+      
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 border border-emerald-800 text-emerald-400 text-xs font-mono font-semibold">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        [RISK-FREE 30-DAY OPERATOR GUARANTEE]
+      </div>
+
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Deploy SHADOW CAT in Under 60 Seconds
+      </h2>
+      <p class="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
+        Start free with Community Edition for CTFs and research, or upgrade to Pro Operator for commercial engagements. 30-day money-back guarantee with zero questions asked.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+        <a href="download.html" class="px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs shadow-lg shadow-emerald-500/20 transition-all font-mono">
+          Download Community Free &rarr;
+        </a>
+        <a href="pricing.html" class="px-6 py-3.5 rounded-xl bg-cyber-card hover:bg-slate-800 border border-emerald-500/50 hover:border-emerald-400 text-emerald-300 font-bold text-xs transition-all font-mono">
+          Get Pro Lifetime ($199)
+        </a>
+        <a href="docs.html" class="px-5 py-3.5 rounded-xl bg-cyber-card hover:bg-slate-800 border border-cyber-border text-slate-300 text-xs font-semibold transition-all">
+          Technical Docs
+        </a>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="flex flex-wrap items-center justify-center gap-6 pt-4 text-[11px] font-mono text-slate-400">
+        <span class="flex items-center gap-1.5">
+          <span class="text-emerald-400 font-bold">[+]</span> No Monthly Subscription
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="text-emerald-400 font-bold">[+]</span> 100% Air-Gapped Local RAM
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="text-emerald-400 font-bold">[+]</span> Instant Ed25519 Key Delivery
+        </span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- 9. GLOBAL FOOTER -->
+  <!-- ============================================================== -->
+  <footer class="border-t border-cyber-border py-12 bg-cyber-black text-xs font-mono text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <img src="logo-mark.png" alt="SHADOW CAT" class="h-6 w-auto opacity-70" />
+        <span class="text-slate-300 font-bold">SHADOW CAT Suite</span>
+        <span>© 2026. Built for Ethical Hackers & CTF Competitors.</span>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-6 text-slate-400">
+        <a href="index.html" class="hover:text-emerald-400 transition-colors">Overview</a>
+        <a href="download.html" class="hover:text-emerald-400 transition-colors">Download</a>
+        <a href="docs.html" class="hover:text-emerald-400 transition-colors">Documentation</a>
+        <a href="pricing.html" class="hover:text-emerald-400 transition-colors">Pricing</a>
+        <a href="about.html" class="hover:text-emerald-400 transition-colors">About Us</a>
+        <a href="security.html" class="hover:text-emerald-400 transition-colors">Security Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    const commands = {
+      unix: "curl -fsSL https://raw.githubusercontent.com/thanakorn30006/shadowcat/main/install.sh | bash",
+      windows: "irm https://raw.githubusercontent.com/thanakorn30006/shadowcat/main/install.ps1 | iex",
+      pip: "pip install shadowcat-suite && shadowcat",
+      docker: "docker run -d -p 8000:8000 --name shadowcat ghcr.io/thanakorn30006/shadowcat:latest"
+    };
+
+    const descriptions = {
+      unix: "Auto-configures virtualenv & launches browser at http://localhost:8000",
+      windows: "Native PowerShell installer, sets up runner & opens browser",
+      pip: "Standard PyPI package install with global 'shadowcat' CLI command",
+      docker: "Official lightweight container with all CTF solvers pre-installed"
+    };
+
+    let activeTab = 'unix';
+
+    function setTab(tab) {
+      activeTab = tab;
+      document.getElementById('cmd-display').innerText = commands[tab];
+      document.getElementById('tab-desc').innerText = descriptions[tab];
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-emerald-500', 'text-black', 'font-semibold');
+        btn.classList.add('text-slate-400', 'font-medium');
+      });
+
+      const activeBtn = document.getElementById('tab-' + tab);
+      activeBtn.classList.remove('text-slate-400', 'font-medium');
+      activeBtn.classList.add('bg-emerald-500', 'text-black', 'font-semibold');
+    }
+
+    function copyInstallCmd() {
+      const cmd = commands[activeTab];
+      navigator.clipboard.writeText(cmd);
+      
+      const copyText = document.getElementById('copy-text');
+      copyText.innerText = 'Copied!';
+      copyText.classList.add('text-emerald-400');
+
+      setTimeout(() => {
+        copyText.innerText = 'Copy Command';
+        copyText.classList.remove('text-emerald-400');
+      }, 2000);
+    }
+
+    // Showcase interactive switcher
+    const showcaseData = {
+      payloads: {
+        src: 'screenshot-payloads.png',
+        url: 'http://127.0.0.1:8000/#payloads',
+        desc: 'Exploit Payloads & Post-Exploitation Reference — Synchronized Reverse Shells & LHOST/LPORT'
+      },
+      forensics: {
+        src: 'screenshot-forensics.png',
+        url: 'http://127.0.0.1:8000/#forensics',
+        desc: 'Digital Artifact & File Forensics — PCAP Stream Carving, EVTX Event Logs & Header Integrity'
+      },
+      crypto: {
+        src: 'screenshot-crypto.png',
+        url: 'http://127.0.0.1:8000/#crypto',
+        desc: 'Cryptanalysis & Multi-Cipher Decoding Engine — 20+ Auto Decoders, Caesar Matrix & XOR Brute-Force'
+      },
+      web: {
+        src: 'screenshot-web.png',
+        url: 'http://127.0.0.1:8000/#web',
+        desc: 'Web Security & Attack Surface Hub — Automated Flag Crawler, WAF Prober & JS Route Secret Hunter'
+      }
+    };
+
+    function switchShowcase(key) {
+      const data = showcaseData[key];
+      if (!data) return;
+
+      const img = document.getElementById('showcase-img');
+      img.style.opacity = '0.4';
+      setTimeout(() => {
+        img.src = data.src;
+        document.getElementById('showcase-url').innerText = data.url;
+        document.getElementById('showcase-desc').innerText = data.desc;
+        img.style.opacity = '1';
+      }, 120);
+
+      document.querySelectorAll('.showcase-tab').forEach(btn => {
+        btn.className = 'showcase-tab px-3.5 py-1.5 rounded-lg font-mono text-xs font-semibold bg-cyber-card border border-cyber-border text-slate-400 hover:text-white transition-all cursor-pointer';
+      });
+      const activeBtn = document.getElementById('showcase-btn-' + key);
+      if (activeBtn) {
+        activeBtn.className = 'showcase-tab px-3.5 py-1.5 rounded-lg font-mono text-xs font-semibold bg-emerald-500 text-black shadow transition-all cursor-pointer';
+      }
+    }
+
+    // Simulator interactive tabs
+    function runSimTab(tabId) {
+      const tabs = ['unwrap', 'cyclic', 'stager', 'repair'];
+      tabs.forEach(t => {
+        const pane = document.getElementById('sim-pane-' + t);
+        const btn = document.getElementById('sim-tab-' + t);
+        if (t === tabId) {
+          if (pane) pane.classList.remove('hidden');
+          if (btn) btn.className = 'sim-btn px-3 py-1.5 rounded-lg bg-emerald-500 text-black font-bold transition-all cursor-pointer';
+        } else {
+          if (pane) pane.classList.add('hidden');
+          if (btn) btn.className = 'sim-btn px-3 py-1.5 rounded-lg bg-cyber-card border border-cyber-border text-slate-400 hover:text-white font-semibold transition-all cursor-pointer';
+        }
+      });
+    }
+
+    function triggerUnwrapDemo() {
+      const btn = document.getElementById('unwrap-sim-btn');
+      const out = document.getElementById('unwrap-sim-output');
+      btn.innerText = 'Unwrapping Layers...';
+      btn.disabled = true;
+      out.style.opacity = '0.3';
+      setTimeout(() => {
+        btn.innerText = 'Run Magic Auto-Unwrap';
+        btn.disabled = false;
+        out.style.opacity = '1';
+      }, 350);
+    }
+
+    function triggerCyclicDemo() {
+      const btn = document.getElementById('cyclic-sim-btn');
+      const out = document.getElementById('cyclic-sim-output');
+      btn.innerText = 'Calculating Offset...';
+      btn.disabled = true;
+      out.style.opacity = '0.3';
+      setTimeout(() => {
+        btn.innerText = 'Calculate Crash Offset';
+        btn.disabled = false;
+        out.style.opacity = '1';
+      }, 200);
+    }
+
+    function triggerRepairDemo() {
+      const btn = document.getElementById('repair-sim-btn');
+      const out = document.getElementById('repair-sim-output');
+      btn.innerText = 'Restoring Magic Bytes...';
+      btn.disabled = true;
+      out.style.opacity = '0.3';
+      setTimeout(() => {
+        btn.innerText = 'Restore Magic Bytes';
+        btn.disabled = false;
+        out.style.opacity = '1';
+      }, 300);
+    }
+  </script>
+</body>
+</html>

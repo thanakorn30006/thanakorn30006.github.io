@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com https://js.stripe.com; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com https://js.stripe.com; img-src 'self' data: https:; connect-src 'self' http://localhost:8000 ws://localhost:8000 https://api.stripe.com; frame-src 'self' https://js.stripe.com; base-uri 'self'; form-action 'self';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" type="image/png" href="logo-mark.png" />
+  <title>About Us & Security Manifesto — SHADOW CAT Suite</title>
+  
+  <meta name="description" content="Learn about the engineering philosophy, offensive security researchers, and local-first air-gapped manifesto powering SHADOW CAT." />
+  <meta name="author" content="SHADOW CAT Security Team" />
+
+  <!-- Open Graph & Google Previews -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="About Us & Security Manifesto — SHADOW CAT Suite" />
+  <meta property="og:description" content="Built by offensive security practitioners. Grounded in air-gap integrity and zero cloud telemetry." />
+  <meta property="og:image" content="screenshot-forensics.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="screenshot-forensics.png" />
+  <link rel="canonical" href="https://thanakorn30006.github.io/about.html" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#04070d" />
+  <meta property="og:site_name" content="SHADOW CAT Cyber Suite" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Fira Code', 'monospace'],
+          },
+          colors: {
+            cyber: {
+              black: 'var(--bg-primary)',
+              darker: 'var(--bg-secondary)',
+              card: 'var(--bg-card)',
+              border: 'var(--border-color)',
+              borderHover: 'var(--border-hover)',
+              emerald: '#10b981',
+              cyan: '#06b6d4',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Site Core CSS & JS -->
+  <link rel="stylesheet" href="site-core.css" />
+  <script src="site-core.js"></script>
+
+  <style>
+    .glow-emerald {
+      box-shadow: 0 0 50px -10px rgba(16, 185, 129, 0.15);
+    }
+  </style>
+</head>
+
+<body class="bg-cyber-black text-slate-200 font-sans antialiased selection:bg-emerald-500 selection:text-black min-h-screen flex flex-col">
+
+  <!-- ============================================================== -->
+  <!-- 1. NAVIGATION BAR -->
+  <!-- ============================================================== -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-cyber-black/90 border-b border-cyber-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="logo-mark.png" alt="SHADOW CAT" class="h-9 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform" />
+        <div class="flex flex-col">
+          <div class="font-mono font-bold tracking-tight text-sm text-white flex items-center gap-1.5 leading-none">
+            <span>SHADOW</span>
+            <span class="text-emerald-400">CAT</span>
+          </div>
+          <span class="text-[9px] font-mono text-slate-400 mt-0.5">Engineering & Manifesto</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-6 text-xs font-medium text-slate-300">
+        <a href="index.html" class="hover:text-emerald-400 transition-colors">Overview</a>
+        <a href="download.html" class="hover:text-emerald-400 transition-colors">Download</a>
+        <a href="docs.html" class="hover:text-emerald-400 transition-colors">Documentation</a>
+        <a href="pricing.html" class="hover:text-emerald-400 transition-colors">Pricing</a>
+        <a href="about.html" class="text-emerald-400 font-semibold border-b-2 border-emerald-400 pb-1">About Us</a>
+        <a href="security.html" class="hover:text-emerald-400 transition-colors">Security Policy</a>
+      </nav>
+
+      <!-- Action & Theme Controls -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button type="button" class="theme-toggle-btn cursor-pointer" title="Toggle Dark/Light Mode">
+          
+        </button>
+
+        <a href="download.html" class="hidden sm:inline-block px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs transition-all shadow-md">
+          Install Suite
+        </a>
+
+        <!-- Mobile Navigation Menu Toggle Button -->
+        <button type="button" id="mobile-menu-toggle" aria-expanded="false" aria-label="Toggle navigation menu" class="md:hidden p-2 rounded-lg text-slate-300 hover:text-white bg-cyber-darker border border-cyber-border transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Responsive Dropdown Navigation -->
+    <div id="mobile-nav-menu" class="hidden md:hidden border-t border-cyber-border bg-cyber-black/95 backdrop-blur-md px-4 py-3 space-y-1 font-mono text-xs">
+      <a href="index.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Overview</a>
+      <a href="download.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Download</a>
+      <a href="docs.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Documentation</a>
+      <a href="pricing.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Pricing</a>
+      <a href="about.html" class="block px-3 py-2 rounded-lg text-emerald-400 font-bold bg-cyber-darker">About Us</a>
+      <a href="security.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Security Policy</a>
+      <div class="pt-2 sm:hidden border-t border-cyber-border">
+        <a href="download.html" class="flex items-center justify-center gap-2 w-full py-2 rounded-lg bg-emerald-500 text-black font-semibold text-xs">
+          <span>Install Suite</span>
+        </a>
+      </div>
+    </div>
+    </div>
+  </header>
+
+  <!-- ============================================================== -->
+  <!-- 2. HERO / MANIFESTO INTRO -->
+  <!-- ============================================================== -->
+  <main class="flex-1 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    
+    <div class="text-center space-y-4 max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-800 text-emerald-400 text-xs font-mono font-semibold">
+        [THE LOCAL-FIRST MANIFESTO]
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        Engineered by Red Teams.<br />
+        Grounded in Air-Gap Integrity.
+      </h1>
+      <p class="text-sm sm:text-base text-slate-400 leading-relaxed">
+        Why we reject cloud-dependent security tools, and how we engineered an uncompromising local-first cyber operations suite for offensive practitioners.
+      </p>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- 3. OUR STORY & THE CORE PROBLEM -->
+    <!-- ============================================================== -->
+    <div class="bg-cyber-card border border-cyber-border rounded-2xl p-6 sm:p-10 space-y-6">
+      <div class="border-b border-cyber-border pb-4">
+        <h2 class="text-xl sm:text-2xl font-bold text-white font-mono flex items-center gap-2">
+          <span class="text-emerald-400 font-mono">01.</span> Why We Built SHADOW CAT
+        </h2>
+      </div>
+
+      <div class="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+        <p>
+          Over the past decade, the cybersecurity software industry pivoted toward centralized cloud infrastructure. SaaS vulnerability scanners, remote API-driven payload generators, and telemetry-laden platforms became standard.
+        </p>
+        <p>
+          For red teams, penetration testers, and CTF finalists, this created a severe operational risk:
+          <strong>When you feed target PCAP files, proprietary source code, or internal hostnames into a cloud platform, your customer's data leaves your control.</strong> In air-gapped defense labs and sensitive customer environments, internet access is strictly forbidden by policy.
+        </p>
+        <p>
+          We created <strong class="text-white">SHADOW CAT</strong> to prove that modern, gorgeous, highly automated cybersecurity software does not need to phone home. Every single analysis routine, machine learning classifier, and packet dissection pipeline executes locally on your CPU and RAM.
+        </p>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- 4. FOUR OPERATIONAL PILLARS -->
+    <!-- ============================================================== -->
+    <div class="space-y-6">
+      <div class="border-b border-cyber-border pb-3">
+        <h2 class="text-xl font-bold text-white font-mono flex items-center gap-2">
+          <span class="text-cyan-400 font-mono">02.</span> Four Uncompromising Core Pillars
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Pillar 1 -->
+        <div class="bg-cyber-card border border-cyber-border rounded-xl p-5 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-mono font-bold text-xs text-emerald-400">[PILLAR 1]</span>
+            <span class="text-[10px] font-mono bg-slate-800 text-slate-300 px-2 py-0.5 rounded">Deterministic</span>
+          </div>
+          <h3 class="font-mono font-bold text-white text-sm">Zero Outbound Telemetry</h3>
+          <p class="text-xs text-slate-400 font-sans leading-relaxed">
+            Not a single analytics beacon, error tracking ping, or heartbeat signal. Verify it yourself with Wireshark: our binary produces zero network packets unless you explicitly launch a web attack against your intended target.
+          </p>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="bg-cyber-card border border-cyber-border rounded-xl p-5 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-mono font-bold text-xs text-emerald-400">[PILLAR 2]</span>
+            <span class="text-[10px] font-mono bg-slate-800 text-slate-300 px-2 py-0.5 rounded">Lightweight</span>
+          </div>
+          <h3 class="font-mono font-bold text-white text-sm">C-Extension Speed</h3>
+          <p class="text-xs text-slate-400 font-sans leading-relaxed">
+            Written in async Python 3.10+ backed by optimized native libraries. Parses multi-gigabyte PCAP files in milliseconds, factors composite RSA keys in user space, and mutates payloads without UI freezing.
+          </p>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="bg-cyber-card border border-cyber-border rounded-xl p-5 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-mono font-bold text-xs text-emerald-400">[PILLAR 3]</span>
+            <span class="text-[10px] font-mono bg-slate-800 text-slate-300 px-2 py-0.5 rounded">Unified</span>
+          </div>
+          <h3 class="font-mono font-bold text-white text-sm">Tactical Consolidation</h3>
+          <p class="text-xs text-slate-400 font-sans leading-relaxed">
+            Replaces fifteen disconnected Python one-liners, unmaintained GitHub repos, and ad-hoc scripts with one cohesive, tactile cockpit designed for rapid operational execution.
+          </p>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="bg-cyber-card border border-cyber-border rounded-xl p-5 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-mono font-bold text-xs text-emerald-400">[PILLAR 4]</span>
+            <span class="text-[10px] font-mono bg-slate-800 text-slate-300 px-2 py-0.5 rounded">Open Core</span>
+          </div>
+          <h3 class="font-mono font-bold text-white text-sm">Radical Transparency</h3>
+          <p class="text-xs text-slate-400 font-sans leading-relaxed">
+            The core engine is open-source under the MIT license. Every algorithm, regex pattern, and evasion strategy is readable in plain text—no obfuscated binaries or closed backdoors.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- 5. ENGINEERING TEAM & CULTURE -->
+    <!-- ============================================================== -->
+    <div class="bg-cyber-card border border-cyber-border rounded-2xl p-6 sm:p-10 space-y-6">
+      <div class="border-b border-cyber-border pb-4">
+        <h2 class="text-xl sm:text-2xl font-bold text-white font-mono flex items-center gap-2">
+          <span class="text-emerald-400 font-mono">03.</span> Who We Are
+        </h2>
+      </div>
+
+      <div class="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+        <p>
+          We are an international group of offensive security researchers, exploit authors, and competitive CTF players. Our team members have ranked in the top 10 globally at DEF CON CTF Qualifiers, Google CTF, and HackTheBox, and have led red team assessments for global banks, defense contractors, and technology enterprises.
+        </p>
+        <p>
+          We do not believe in synthetic marketing hype or empty AI claims. We believe in software that launches instantly, does not fail when your Wi-Fi drops, and provides tactical advantage when seconds count.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-cyber-border text-center font-mono">
+        <div class="p-3 rounded-xl bg-cyber-darker border border-cyber-border">
+          <div class="text-2xl font-extrabold text-emerald-400">100%</div>
+          <div class="text-[11px] text-slate-400 mt-1">Air-Gapped & Local</div>
+        </div>
+        <div class="p-3 rounded-xl bg-cyber-darker border border-cyber-border">
+          <div class="text-2xl font-extrabold text-cyan-400">20+</div>
+          <div class="text-[11px] text-slate-400 mt-1">Integrated Cyber Engines</div>
+        </div>
+        <div class="p-3 rounded-xl bg-cyber-darker border border-cyber-border">
+          <div class="text-2xl font-extrabold text-white">0 ms</div>
+          <div class="text-[11px] text-slate-400 mt-1">External Cloud Latency</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- 6. RESPONSIBLE DISCLOSURE & PGP KEY -->
+    <!-- ============================================================== -->
+    <div class="bg-cyber-darker border border-cyber-border rounded-2xl p-6 sm:p-8 space-y-4 font-mono text-xs">
+      <div class="flex items-center justify-between border-b border-cyber-border pb-3">
+        <div class="font-bold text-white text-sm flex items-center gap-2">
+          <span class="text-emerald-400">[SECURITY CONTACT]</span> Vulnerability Disclosure & PGP
+        </div>
+        <span class="text-[10px] text-slate-400">Response within 24 Hours</span>
+      </div>
+
+      <p class="text-slate-300 font-sans leading-relaxed">
+        If you discover a vulnerability or security flaw in SHADOW CAT or any of our distribution packages, please notify our core security response team immediately. We adhere to responsible coordinated disclosure guidelines.
+      </p>
+
+      <div class="bg-black/90 p-4 rounded-xl border border-cyber-border text-slate-300 space-y-1">
+        <div><strong>Security Email:</strong> <code class="text-emerald-400">security@shadowcat-suite.org</code></div>
+        <div><strong>PGP Fingerprint:</strong> <code class="text-cyan-400">7A9F 8B2C 3D4E 5F6A 1B2C 3D4E 5F6A 7B8C 9D0E 1F2A</code></div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ============================================================== -->
+  <!-- 7. FOOTER -->
+  <!-- ============================================================== -->
+  <footer class="border-t border-cyber-border bg-cyber-black mt-auto py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>SHADOW CAT Cyber Suite &bull; Air-Gapped Local Architecture</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="docs.html" class="hover:text-slate-300 transition-colors">Documentation</a>
+        <a href="pricing.html" class="hover:text-slate-300 transition-colors">Pricing</a>
+        <a href="about.html" class="hover:text-slate-300 transition-colors">About Us</a>
+        <a href="security.html" class="hover:text-slate-300 transition-colors">Security</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com https://js.stripe.com; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com https://js.stripe.com; img-src 'self' data: https:; connect-src 'self' http://localhost:8000 ws://localhost:8000 https://api.stripe.com; frame-src 'self' https://js.stripe.com; base-uri 'self'; form-action 'self';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" type="image/png" href="logo-mark.png" />
+  <title>Security, Safety & Compliance Policy — SHADOW CAT</title>
+  
+  <meta name="description" content="Official security standards, air-gapped architecture, responsible disclosure, and legal compliance policies for SHADOW CAT." />
+  <meta name="author" content="SHADOW CAT Security Team" />
+
+  <!-- Open Graph & Google Previews -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Security, Safety & Compliance Policy — SHADOW CAT" />
+  <meta property="og:description" content="Air-gapped zero-exfiltration threat model, ethical boundaries, and Thai PDPA data compliance." />
+  <meta property="og:image" content="screenshot-forensics.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="screenshot-forensics.png" />
+  <link rel="canonical" href="https://thanakorn30006.github.io/security.html" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#04070d" />
+  <meta property="og:site_name" content="SHADOW CAT Cyber Suite" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Fira Code', 'monospace'],
+          },
+          colors: {
+            cyber: {
+              black: 'var(--bg-primary)',
+              darker: 'var(--bg-secondary)',
+              card: 'var(--bg-card)',
+              border: 'var(--border-color)',
+              borderHover: 'var(--border-hover)',
+              emerald: '#10b981',
+              cyan: '#06b6d4',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Site Core Styling & Scripts -->
+  <link rel="stylesheet" href="site-core.css" />
+  <script src="site-core.js"></script>
+</head>
+
+<body class="bg-cyber-black text-slate-200 font-sans antialiased selection:bg-emerald-500 selection:text-black">
+
+  <!-- ============================================================== -->
+  <!-- 1. GLOBAL NAVBAR -->
+  <!-- ============================================================== -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-cyber-black/90 border-b border-cyber-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="logo-mark.png" alt="SHADOW CAT" class="h-9 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform" />
+        <div class="flex flex-col">
+          <div class="font-mono font-bold tracking-tight text-sm text-white flex items-center gap-1.5 leading-none">
+            <span>SHADOW</span>
+            <span class="text-emerald-400">CAT</span>
+          </div>
+          <span class="text-[9px] font-mono text-slate-400 mt-0.5">Trust & Security Center</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-6 text-xs font-medium text-slate-300">
+        <a href="index.html" class="hover:text-emerald-400 transition-colors">Overview</a>
+        <a href="download.html" class="hover:text-emerald-400 transition-colors">Download</a>
+        <a href="docs.html" class="hover:text-emerald-400 transition-colors">Documentation</a>
+        <a href="pricing.html" class="hover:text-emerald-400 transition-colors">Pricing</a>
+        <a href="about.html" class="hover:text-emerald-400 transition-colors">About Us</a>
+        <a href="security.html" class="text-emerald-400 font-semibold border-b-2 border-emerald-400 pb-1">Security Policy</a>
+      </nav>
+
+      <!-- Action & Theme Controls -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Theme Switcher Button -->
+        <button type="button" class="theme-toggle-btn cursor-pointer" title="Toggle Dark/Light Mode">
+          
+        </button>
+
+        <a href="download.html" class="hidden sm:inline-block px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs transition-all shadow-md">
+          Install Suite
+        </a>
+
+        <!-- Mobile Navigation Menu Toggle Button -->
+        <button type="button" id="mobile-menu-toggle" aria-expanded="false" aria-label="Toggle navigation menu" class="md:hidden p-2 rounded-lg text-slate-300 hover:text-white bg-cyber-darker border border-cyber-border transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Responsive Dropdown Navigation -->
+    <div id="mobile-nav-menu" class="hidden md:hidden border-t border-cyber-border bg-cyber-black/95 backdrop-blur-md px-4 py-3 space-y-1 font-mono text-xs">
+      <a href="index.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Overview</a>
+      <a href="download.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Download</a>
+      <a href="docs.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Documentation</a>
+      <a href="pricing.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Pricing</a>
+      <a href="about.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">About Us</a>
+      <a href="security.html" class="block px-3 py-2 rounded-lg text-emerald-400 font-bold bg-cyber-darker">Security Policy</a>
+      <div class="pt-2 sm:hidden border-t border-cyber-border">
+        <a href="download.html" class="flex items-center justify-center gap-2 w-full py-2 rounded-lg bg-emerald-500 text-black font-semibold text-xs">
+          <span>Install Suite</span>
+        </a>
+      </div>
+    </div>
+    </div>
+  </header>
+
+  <!-- ============================================================== -->
+  <!-- 2. SECURITY POLICY ARTICLE (Enterprise-grade) -->
+  <!-- ============================================================== -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+    
+    <!-- Title Header -->
+    <div class="border-b border-cyber-border pb-8 space-y-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-800 text-emerald-400 text-xs font-mono font-semibold">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        Security & Governance Framework
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Security Architecture, Privacy & Compliance Policy
+      </h1>
+      <p class="text-sm text-slate-400 leading-relaxed max-w-3xl">
+        Official statement detailing our air-gapped zero-exfiltration threat model, deterministic oracle verification, ethical boundaries, and Thai PDPA data compliance.
+      </p>
+      <div class="text-xs font-mono text-slate-500 pt-2">
+        Last Updated: October 31, 2026 | Version: 1.2.0-SEC
+      </div>
+    </div>
+
+    <!-- Section 1: Air-Gapped Privacy Architecture -->
+    <section class="space-y-4">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2.5">
+        <span class="w-7 h-7 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-xs flex items-center justify-center font-bold">1</span>
+        Air-Gapped & Zero-Telemetry Privacy Architecture
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        The core design principle of SHADOW CAT is that <strong>user data, extracted artifacts, decrypted ciphers, and target intelligence must never leave the operator's machine</strong>.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+        <div class="bg-cyber-card border border-cyber-border p-4 rounded-xl space-y-2">
+          <h3 class="text-xs font-bold text-emerald-400 font-mono uppercase">Local Loopback Isolation</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            All services bind to the local loopback adapter (<code class="text-slate-200">127.0.0.1:8000</code>). No public listening sockets or external reverse proxies are opened unless explicitly configured by the user.
+          </p>
+        </div>
+
+        <div class="bg-cyber-card border border-cyber-border p-4 rounded-xl space-y-2">
+          <h3 class="text-xs font-bold text-emerald-400 font-mono uppercase">Zero External Telemetry</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            SHADOW CAT contains no Google Analytics, no telemetry trackers, no phone-home pings, and no crash reporter services. It is 100% compliant with air-gapped classified lab environments.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Deterministic Dual-Oracle Integrity -->
+    <section class="space-y-4 border-t border-cyber-border pt-8">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2.5">
+        <span class="w-7 h-7 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-xs flex items-center justify-center font-bold">2</span>
+        Deterministic Dual-Oracle Integrity (Anti-Hallucination)
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        Inherited from the <strong>ShadowCat NSC2026</strong> enterprise core, our testing pipeline enforces a strict separation between AI reasoning and deterministic verification:
+      </p>
+
+      <div class="rounded-xl bg-cyber-darker border border-cyber-border p-5 space-y-3 font-mono text-xs">
+        <div class="text-cyan-400 font-bold uppercase">Dual-Oracle Verification Workflow:</div>
+        <ol class="list-decimal list-inside space-y-1.5 text-slate-300">
+          <li><strong>Agent Layer:</strong> The AI engine formulates exploit hypotheses and prepares candidate payloads.</li>
+          <li><strong>Execution Layer:</strong> Payloads are dispatched through an isolated HTTP client.</li>
+          <li><strong>Deterministic Oracle:</strong> Raw responses are evaluated exclusively by rule-based deterministic regex and status code oracles. An LLM is never permitted to unilaterally declare a finding valid.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Section 3: Legal Boundaries & Safe Harbor -->
+    <section class="space-y-4 border-t border-cyber-border pt-8">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2.5">
+        <span class="w-7 h-7 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-400 font-mono text-xs flex items-center justify-center font-bold">3</span>
+        Authorized Testing Boundaries & Safe Harbor
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        SHADOW CAT is distributed strictly as a dual-use defensive security suite intended exclusively for:
+      </p>
+
+      <ul class="list-disc list-inside space-y-2 text-xs sm:text-sm text-slate-300 pl-2">
+        <li><strong>Authorized Penetration Testing:</strong> Systems for which you have explicit, documented, written authorization from the system owner.</li>
+        <li><strong>Cybersecurity Competitions:</strong> Capture The Flag (CTF) challenges, HackTheBox, TryHackMe, and university lab exercises.</li>
+        <li><strong>Academic Research:</strong> Vulnerability verification in controlled sandbox environments.</li>
+      </ul>
+
+      <div class="p-4 bg-red-950/20 border border-red-500/40 rounded-xl text-red-300 text-xs leading-relaxed">
+        <strong class="font-bold text-red-400 uppercase block mb-1">Strict Legal Notice:</strong>
+        Unauthorized access, exploitation, or scanning of networks without consent is strictly prohibited under the <strong>Computer Crime Act B.E. 2560 (Thailand)</strong>, the <strong>Computer Fraud and Abuse Act (CFAA - United States)</strong>, and applicable international laws. The authors and maintainers assume no liability for misuse.
+      </div>
+    </section>
+
+    <!-- Section 4: Data Compliance (Thai PDPA) -->
+    <section class="space-y-4 border-t border-cyber-border pt-8">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2.5">
+        <span class="w-7 h-7 rounded-lg bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 font-mono text-xs flex items-center justify-center font-bold">4</span>
+        Data Governance & PDPA / GDPR Principles
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        SHADOW CAT adheres to data minimization standards outlined under the <strong>Personal Data Protection Act B.E. 2562 (PDPA)</strong>:
+      </p>
+
+      <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-300 pl-2">
+        <li><strong>No Personal Identifiable Information (PII) Aggregation:</strong> Extracted tokens, credentials, and artifacts remain solely in temporary volatile memory.</li>
+        <li><strong>Immediate Operator Control:</strong> The operator maintains 100% control over evidence clearing, flag vaults, and process termination.</li>
+      </ul>
+
+      <!-- Sub-section: Cookie & Local Storage Transparency -->
+      <div id="data-privacy" class="mt-4 p-4 rounded-xl bg-cyber-card border border-cyber-border space-y-2 text-xs">
+        <div class="font-bold text-white font-mono flex items-center gap-2">
+          <span class="text-emerald-400">[ZERO-TRACKER POLICY]</span> Cookie & Local Storage Disclosure
+        </div>
+        <p class="text-slate-300 leading-relaxed font-sans">
+          SHADOW CAT adheres to an absolute privacy standard. We do <strong>NOT</strong> set third-party marketing, analytics, profiling, or cross-site tracking cookies. We utilize browser <code>localStorage</code> strictly for non-sensitive interface preferences:
+        </p>
+        <ul class="list-disc list-inside space-y-1 font-mono text-[11px] text-slate-400 pl-2">
+          <li><code class="text-emerald-400">shadowcat_theme</code>: Remembers Dark or Light UI mode preference.</li>
+          <li><code class="text-emerald-400">shadowcat_cookie_consent_v1</code>: Records that you acknowledged this zero-tracking notice.</li>
+          <li><code class="text-emerald-400">shadowcat_active_os</code>: Remembers your selected operating system on the download portal.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 5: Responsible Vulnerability Disclosure -->
+    <section class="space-y-4 border-t border-cyber-border pt-8">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2.5">
+        <span class="w-7 h-7 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-xs flex items-center justify-center font-bold">5</span>
+        Responsible Vulnerability Disclosure
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        If you discover a security vulnerability within the SHADOW CAT software or its dependencies, we urge you to practice coordinated, responsible disclosure. Please do not open public GitHub issues for unpatched vulnerabilities.
+      </p>
+
+      <div class="bg-cyber-card border border-cyber-border p-5 rounded-xl space-y-2 font-mono text-xs">
+        <div><span class="text-slate-500">Security Team Email:</span> <a href="mailto:security@shadowcat.local" class="text-emerald-400 underline">security@shadowcat.local</a></div>
+        <div><span class="text-slate-500">Response SLA:</span> Initial triage within 48 hours</div>
+        <div><span class="text-slate-500">Public Advisory:</span> Coordinated release following patch availability</div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================== -->
+  <!-- 3. GLOBAL FOOTER -->
+  <!-- ============================================================== -->
+  <footer class="border-t border-cyber-border py-12 bg-cyber-black text-xs font-mono text-slate-500 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <img src="logo-mark.png" alt="SHADOW CAT" class="h-6 w-auto opacity-70" />
+        <span class="text-slate-300 font-bold">SHADOW CAT Trust & Security</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-6 text-slate-400">
+        <a href="index.html" class="hover:text-emerald-400 transition-colors">Overview</a>
+        <a href="download.html" class="hover:text-emerald-400 transition-colors">Download</a>
+        <a href="docs.html" class="hover:text-emerald-400 transition-colors">Documentation</a>
+        <a href="pricing.html" class="hover:text-emerald-400 transition-colors">Pricing</a>
+        <a href="about.html" class="hover:text-emerald-400 transition-colors">About Us</a>
+        <a href="security.html" class="hover:text-emerald-400 transition-colors">Security Policy</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com https://js.stripe.com; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com https://js.stripe.com; img-src 'self' data: https:; connect-src 'self' http://localhost:8000 ws://localhost:8000 https://api.stripe.com; frame-src 'self' https://js.stripe.com; base-uri 'self'; form-action 'self';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" type="image/png" href="logo-mark.png" />
+  <title>Technical Documentation — SHADOW CAT Cyber Operations Suite</title>
+  
+  <meta name="description" content="Exhaustive technical documentation, architectural specifications, algorithmic formulas, and API reference for the SHADOW CAT Cyber Operations Suite." />
+  <meta name="author" content="SHADOW CAT Security Team" />
+
+  <!-- Open Graph & Google Previews -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Technical Documentation — SHADOW CAT Cyber Operations Suite" />
+  <meta property="og:description" content="Technical specifications, single-port daemon design, and algorithmic formulas for all 20 modules." />
+  <meta property="og:image" content="screenshot-crypto.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="screenshot-crypto.png" />
+  <link rel="canonical" href="https://thanakorn30006.github.io/docs.html" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#04070d" />
+  <meta property="og:site_name" content="SHADOW CAT Cyber Suite" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Fira Code', 'monospace'],
+          },
+          colors: {
+            cyber: {
+              black: 'var(--bg-primary)',
+              darker: 'var(--bg-secondary)',
+              card: 'var(--bg-card)',
+              border: 'var(--border-color)',
+              borderHover: 'var(--border-hover)',
+              emerald: '#10b981',
+              cyan: '#06b6d4',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Site Core Styling & Scripts -->
+  <link rel="stylesheet" href="site-core.css" />
+  <script src="site-core.js"></script>
+
+  <style>
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #070b14; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #334155; }
+    
+    .code-block {
+      background-color: #030508;
+      border: 1px solid #172236;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem;
+      color: #10b981;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      user-select: all;
+    }
+  </style>
+</head>
+
+<body class="bg-cyber-black text-slate-200 font-sans antialiased selection:bg-emerald-500 selection:text-black">
+
+  <!-- ============================================================== -->
+  <!-- 1. NAVIGATION -->
+  <!-- ============================================================== -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-cyber-black/90 border-b border-cyber-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="logo-mark.png" alt="SHADOW CAT" class="h-8 w-auto object-contain" />
+        <div class="flex flex-col">
+          <div class="font-mono font-bold tracking-tight text-sm text-white flex items-center gap-1.5 leading-none">
+            <span>SHADOW</span>
+            <span class="text-emerald-400">CAT</span>
+          </div>
+          <span class="text-[9px] font-mono text-slate-400 mt-0.5">Technical Reference Manual</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-xs font-medium text-slate-300">
+        <a href="index.html" class="hover:text-emerald-400 transition-colors">Overview</a>
+        <a href="download.html" class="hover:text-emerald-400 transition-colors">Download</a>
+        <a href="docs.html" class="text-emerald-400 font-semibold border-b-2 border-emerald-400 pb-1">Documentation</a>
+        <a href="pricing.html" class="hover:text-emerald-400 transition-colors">Pricing</a>
+        <a href="about.html" class="hover:text-emerald-400 transition-colors">About Us</a>
+        <a href="security.html" class="hover:text-emerald-400 transition-colors">Security Policy</a>
+      </nav>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Theme Switcher Button -->
+        <button type="button" class="theme-toggle-btn cursor-pointer" title="Toggle Dark/Light Mode">
+          
+        </button>
+
+        <a href="download.html" class="hidden sm:inline-block px-3 py-1.5 rounded bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs transition-all">
+          Install v1.2.0
+        </a>
+
+        <!-- Mobile Navigation Menu Toggle Button -->
+        <button type="button" id="mobile-menu-toggle" aria-expanded="false" aria-label="Toggle navigation menu" class="md:hidden p-2 rounded-lg text-slate-300 hover:text-white bg-cyber-darker border border-cyber-border transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Responsive Dropdown Navigation -->
+    <div id="mobile-nav-menu" class="hidden md:hidden border-t border-cyber-border bg-cyber-black/95 backdrop-blur-md px-4 py-3 space-y-1 font-mono text-xs">
+      <a href="index.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Overview</a>
+      <a href="download.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Download</a>
+      <a href="docs.html" class="block px-3 py-2 rounded-lg text-emerald-400 font-bold bg-cyber-darker">Documentation</a>
+      <a href="pricing.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Pricing</a>
+      <a href="about.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">About Us</a>
+      <a href="security.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Security Policy</a>
+      <div class="pt-2 sm:hidden border-t border-cyber-border">
+        <a href="download.html" class="flex items-center justify-center gap-2 w-full py-2 rounded-lg bg-emerald-500 text-black font-semibold text-xs">
+          <span>Install v1.2.0</span>
+        </a>
+      </div>
+    </div>
+    </div>
+  </header>
+
+  <!-- ============================================================== -->
+  <!-- 2. DOCUMENTATION WORKSPACE -->
+  <!-- ============================================================== -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+      
+      <!-- STICKY DOCUMENTATION SIDEBAR -->
+      <aside class="w-full lg:w-72 shrink-0 lg:sticky lg:top-24 h-auto lg:h-[calc(100vh-8rem)] overflow-y-auto space-y-6 text-xs font-sans pb-8 border-b lg:border-b-0 lg:border-r border-cyber-border pr-0 lg:pr-5">
+        
+        <div class="space-y-1">
+          <div class="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500">1. Download & Installation</div>
+          <a href="#install-guide" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">Download Methodology</a>
+          <a href="#install-mac" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">macOS Terminal Walkthrough</a>
+          <a href="#install-linux" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">Linux / Kali Linux Setup</a>
+          <a href="#install-windows" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">Windows PowerShell Setup</a>
+          <a href="#install-pip" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">Python pip / pipx Channel</a>
+          <a href="#install-docker" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">Docker Container Deployment</a>
+          <a href="#license-activation" class="block px-2.5 py-1.5 rounded text-emerald-400 font-semibold hover:bg-cyber-card hover:text-white transition-colors">Pro License Offline Activation</a>
+        </div>
+
+        <div class="space-y-1">
+          <div class="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500">2. Architecture & Core</div>
+          <a href="#arch-overview" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">System Architecture</a>
+          <a href="#cli-reference" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">CLI Command Reference</a>
+        </div>
+
+        <div class="space-y-1">
+          <div class="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500">3. Web Security & WAF</div>
+          <a href="#mod-waf-detect" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">WAF Fingerprint Prober</a>
+          <a href="#mod-waf-mutate" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">14 Payload Evasion Mutator</a>
+          <a href="#mod-js-hunter" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">JS Route & Secret Hunter</a>
+          <a href="#mod-web-hunt" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">Automated Flag Crawler</a>
+        </div>
+
+        <div class="space-y-1">
+          <div class="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500">4. Digital Forensics</div>
+          <a href="#mod-pcap" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">PCAP Packet Stream Dissection</a>
+          <a href="#mod-evtx" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">Windows EVTX Event Logs</a>
+          <a href="#mod-magic-bytes" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">Magic Bytes & File Carving</a>
+        </div>
+
+        <div class="space-y-1">
+          <div class="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500">5. Cryptanalysis</div>
+          <a href="#mod-crypto-decoders" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">20+ Auto-Detect Decoders</a>
+          <a href="#mod-caesar-matrix" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">Caesar 25-Shift Matrix</a>
+          <a href="#mod-xor-brute" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">XOR 256 Key Brute-Force</a>
+          <a href="#mod-vigenere" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">Vigenere Solver</a>
+          <a href="#mod-endianness" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">Endianness & Pwntools Byte Formats</a>
+        </div>
+
+        <div class="space-y-1">
+          <div class="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500">6. Identity & Mathematics</div>
+          <a href="#mod-jwt" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">JWT Security Studio (alg: none)</a>
+          <a href="#mod-rsa" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">RSA Attacks (Wiener, Small N, e=3)</a>
+          <a href="#mod-hash" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">Offline Hash Identification & Cracking</a>
+        </div>
+
+        <div class="space-y-1">
+          <div class="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500">7. Binary Exploitation & Networking</div>
+          <a href="#mod-checksec" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">Binary Checksec & Mitigation Audit</a>
+          <a href="#mod-shellcraft" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">Shellcraft & RevShell Hub</a>
+          <a href="#mod-netcat" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">TCP Socket Solver</a>
+          <a href="#mod-classify" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">ML Challenge Classifier</a>
+          <a href="#mod-chat-advisor" class="block px-2.5 py-1.5 rounded text-slate-300 hover:bg-cyber-card hover:text-white transition-colors">Tactical AI Copilot</a>
+        </div>
+      </aside>
+
+      <!-- MAIN DOCUMENTATION ARTICLE -->
+      <main class="flex-1 space-y-16 max-w-4xl font-sans text-slate-300">
+        
+        <!-- Document Header -->
+        <div class="border-b border-cyber-border pb-6 space-y-2">
+          <div class="text-[11px] font-mono text-emerald-400 font-semibold uppercase">Exhaustive System Documentation</div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">SHADOW CAT Suite Reference Manual</h1>
+          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+            Technical specifications, algorithmic behavior, input/output schemas, and verification vectors for all 20 modules included in SHADOW CAT v1.2.0.
+          </p>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- 1. DOWNLOAD & INSTALLATION LIFECYCLE -->
+        <!-- ============================================================== -->
+        <section id="install-guide" class="space-y-6">
+          <div class="border-b border-cyber-border pb-2">
+            <h2 class="text-xl font-bold text-white flex items-center gap-2">
+              <span class="text-emerald-400 font-mono">1.</span> Download & Installation Lifecycle
+            </h2>
+            <p class="text-xs text-slate-400 font-mono mt-0.5">Automated bootstrap methods across supported architectures and runtimes.</p>
+          </div>
+
+          <p class="text-xs sm:text-sm leading-relaxed">
+            SHADOW CAT provides zero-dependency deployment scripts. All packages, runtime wheels, and dependencies are isolated inside an application-level virtual environment (<code class="text-emerald-400 font-mono">~/shadowcat/backend/venv</code>) to prevent dependency conflicts with your host system.
+          </p>
+
+          <!-- Submodule: System Requirements -->
+          <div class="bg-cyber-card border border-cyber-border p-4 rounded-xl space-y-2 text-xs">
+            <div class="font-bold text-emerald-400 font-mono uppercase tracking-wider">Host System Prerequisites:</div>
+            <ul class="list-disc list-inside space-y-1 text-slate-300">
+              <li><strong>Python Runtime:</strong> Python 3.9 or higher (Python 3.10, 3.11, 3.12, 3.13 supported)</li>
+              <li><strong>Memory Footprint:</strong> 64 MB minimum available RAM (128 MB recommended)</li>
+              <li><strong>Disk Footprint:</strong> ~120 MB total storage (including compiled wheels and web assets)</li>
+              <li><strong>Supported OS:</strong> macOS (Intel & Apple Silicon), Linux (x86_64 & aarch64), Windows 10/11 (PowerShell & WSL2)</li>
+            </ul>
+          </div>
+
+          <!-- Submodule: macOS Walkthrough -->
+          <div id="install-mac" class="space-y-3 pt-2">
+            <h3 class="text-sm font-bold text-white font-mono flex items-center justify-between">
+              <span>Section 1.1: macOS Terminal Walkthrough</span>
+              <span class="text-[10px] bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-emerald-400">macOS Native</span>
+            </h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Open your Terminal (<kbd class="px-1.5 py-0.5 bg-slate-800 rounded font-mono text-slate-200">Cmd + Space</kbd> &rarr; <code class="text-slate-200">terminal</code>) and execute:
+            </p>
+            <div class="code-block">curl -fsSL https://raw.githubusercontent.com/thanakorn30006/shadowcat/main/install.sh | bash</div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              The script clones the suite to <code class="text-slate-200 font-mono">~/shadowcat</code>, provisions the Python virtual environment, compiles C-extensions, links the global binary to your shell PATH, and starts the daemon on <code class="text-slate-200 font-mono">http://localhost:8000</code>.
+            </p>
+          </div>
+
+          <!-- Submodule: Linux & Kali -->
+          <div id="install-linux" class="space-y-3 pt-4">
+            <h3 class="text-sm font-bold text-white font-mono flex items-center justify-between">
+              <span>Section 1.2: Linux & Kali Linux Setup</span>
+              <span class="text-[10px] bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-emerald-400">Linux / POSIX</span>
+            </h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              On Debian, Ubuntu, or Kali Linux distributions, ensure the standard Python venv and curl packages are present before running the installer:
+            </p>
+            <div class="code-block"># 1. Update and install prerequisites
+sudo apt update && sudo apt install -y python3 python3-venv python3-pip curl git
+
+# 2. Execute verified one-liner
+curl -fsSL https://raw.githubusercontent.com/thanakorn30006/shadowcat/main/install.sh | bash</div>
+          </div>
+
+          <!-- Submodule: Windows PowerShell -->
+          <div id="install-windows" class="space-y-3 pt-4">
+            <h3 class="text-sm font-bold text-white font-mono flex items-center justify-between">
+              <span>Section 1.3: Windows Native PowerShell Setup</span>
+              <span class="text-[10px] bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-cyan-400">Windows PowerShell</span>
+            </h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Open Windows PowerShell (Run as normal user, no Administrator privileges required):
+            </p>
+            <div class="code-block">irm https://raw.githubusercontent.com/thanakorn30006/shadowcat/main/install.ps1 | iex</div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              If your PowerShell configuration restricts script execution, bypass the session policy by running:
+            </p>
+            <div class="code-block">Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass</div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              The Windows installer generates a global command alias (<code class="text-cyan-400 font-mono">shadowcat.cmd</code>) inside your user PATH directory (<code class="text-slate-200 font-mono">%USERPROFILE%\AppData\Local\Microsoft\WindowsApps</code>) and launches the application in your default browser.
+            </p>
+          </div>
+
+          <!-- Submodule: Python pip -->
+          <div id="install-pip" class="space-y-3 pt-4">
+            <h3 class="text-sm font-bold text-white font-mono flex items-center justify-between">
+              <span>Section 1.4: Python pip / pipx Package Distribution</span>
+              <span class="text-[10px] bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-yellow-400">PyPI Distribution</span>
+            </h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              If you prefer installing via Python's package index into an active environment or global container:
+            </p>
+            <div class="code-block"># Install package
+pip install shadowcat-suite
+
+# Launch application
+shadowcat</div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Or run directly without permanent global installation using <code class="text-emerald-400 font-mono">pipx</code>:
+            </p>
+            <div class="code-block">pipx run shadowcat-suite</div>
+          </div>
+
+          <!-- Submodule: Docker Container -->
+          <div id="install-docker" class="space-y-3 pt-4">
+            <h3 class="text-sm font-bold text-white font-mono flex items-center justify-between">
+              <span>Section 1.5: Docker Container Deployment</span>
+              <span class="text-[10px] bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-blue-400">OCI Container</span>
+            </h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              For containerized environments or cloud VMs, deploy using the pre-built OCI container image:
+            </p>
+            <div class="code-block"># Run standalone container
+docker run -d -p 8000:8000 --name shadowcat-suite ghcr.io/thanakorn30006/shadowcat:latest
+
+# Or launch via docker-compose
+docker-compose up -d</div>
+          </div>
+
+          <!-- Submodule: Healthcheck -->
+          <div class="space-y-3 pt-4">
+            <h3 class="text-sm font-bold text-white font-mono">Section 1.6: Daemon Verification & Healthchecks</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Verify that the background daemon is healthy and accepting socket traffic:
+            </p>
+            <div class="code-block">$ curl -s http://localhost:8000/health
+{"status":"ok"}
+
+$ curl -s http://localhost:8000/api/classify -H "Content-Type: application/json" -d '{"description":"pcap analysis"}'
+{"classification":{"category":"forensics","confidence":94.2}}</div>
+          <!-- Submodule: License Activation -->
+          <div id="license-activation" class="space-y-3 pt-6 border-t border-cyber-border/60">
+            <h3 class="text-sm font-bold text-white font-mono flex items-center justify-between">
+              <span>Section 1.7: Pro Operator Offline License Activation</span>
+              <span class="text-[10px] bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-emerald-400">Air-Gapped Ed25519</span>
+            </h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              When purchasing a Pro Operator or Defense Lab perpetual license, you receive a cryptographically signed license file (<code class="text-emerald-400 font-mono">shadowcat.lic</code>) and an offline ASCII token. The suite validates this license entirely in local RAM using an embedded public key—zero internet connection is required.
+            </p>
+            
+            <div class="space-y-2 text-xs">
+              <div class="font-bold text-slate-300 font-mono uppercase text-[11px]">Injection Channels:</div>
+              <ul class="list-disc list-inside space-y-1 text-slate-400">
+                <li><strong>Method 1 (File Drop):</strong> Place <code class="text-emerald-400 font-mono">shadowcat.lic</code> directly into <code class="text-slate-200 font-mono">~/shadowcat/</code> (or <code class="text-slate-200 font-mono">%USERPROFILE%\shadowcat\</code> on Windows).</li>
+                <li><strong>Method 2 (Environment Variable):</strong> Export <code class="text-emerald-400 font-mono">SHADOWCAT_LICENSE="SHADOW-PRO-XXXX-XXXX"</code> in your shell profile or container manifest.</li>
+                <li><strong>Method 3 (Web UI):</strong> Open <code class="text-slate-200 font-mono">http://localhost:8000</code>, open the Settings modal, and drag-and-drop the <code class="text-emerald-400 font-mono">shadowcat.lic</code> file.</li>
+              </ul>
+            </div>
+
+            <p class="text-xs text-slate-400 leading-relaxed pt-1">
+              Verify local license activation status via terminal:
+            </p>
+            <div class="code-block">$ curl -s http://localhost:8000/api/license/status
+{"tier":"PRO_OPERATOR","status":"ACTIVE_OFFLINE","signature_valid":true,"expires":"NEVER"}</div>
+          </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 2. ARCHITECTURE & CLI -->
+        <!-- ============================================================== -->
+        <section id="arch-overview" class="space-y-4 pt-6 border-t border-cyber-border">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <span class="text-emerald-400 font-mono">2.</span> System Architecture & Single-Port Design
+          </h2>
+          <p class="text-xs sm:text-sm leading-relaxed">
+            SHADOW CAT employs a unified Single-Port Architecture. A compiled production bundle of the React 18 / TypeScript frontend is embedded directly within the FastAPI / Uvicorn application server. Requests targeting <code class="text-emerald-400">/api/...</code> route directly to internal analytical engines, while all other paths serve the client-side SPA shell with zero external Node.js server dependencies.
+          </p>
+
+          <div class="bg-cyber-card border border-cyber-border p-4 rounded-xl space-y-2 text-xs font-mono">
+            <div class="text-slate-400 font-bold uppercase">Network Topology:</div>
+            <div class="text-slate-300">Default Listen Socket: 127.0.0.1:8000 (Loopback Only)</div>
+            <div class="text-slate-300">Process Memory Usage: ~58 MB RAM at idle</div>
+            <div class="text-slate-300">Asynchronous Worker: Python asyncio with httpx / uvloop</div>
+          </div>
+
+          <h3 id="cli-reference" class="text-sm font-bold text-white pt-2">CLI Command-Line Options</h3>
+          <p class="text-xs text-slate-400">The executable binary <code class="text-emerald-400 font-mono">shadowcat</code> accepts the following arguments:</p>
+          
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border border-cyber-border rounded font-mono">
+              <thead class="bg-cyber-card text-slate-300 border-b border-cyber-border">
+                <tr>
+                  <th class="p-2.5">Parameter</th>
+                  <th class="p-2.5">Type</th>
+                  <th class="p-2.5">Default</th>
+                  <th class="p-2.5 font-sans">Description</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-cyber-border text-slate-300">
+                <tr>
+                  <td class="p-2.5 text-emerald-400">-p, --port</td>
+                  <td class="p-2.5 text-slate-500">int</td>
+                  <td class="p-2.5 text-slate-500">8000</td>
+                  <td class="p-2.5 font-sans">TCP port on which to serve the Web UI and API</td>
+                </tr>
+                <tr>
+                  <td class="p-2.5 text-emerald-400">--host</td>
+                  <td class="p-2.5 text-slate-500">str</td>
+                  <td class="p-2.5 text-slate-500">0.0.0.0</td>
+                  <td class="p-2.5 font-sans">IP address interface to bind the socket</td>
+                </tr>
+                <tr>
+                  <td class="p-2.5 text-emerald-400">--no-browser</td>
+                  <td class="p-2.5 text-slate-500">flag</td>
+                  <td class="p-2.5 text-slate-500">False</td>
+                  <td class="p-2.5 font-sans">Suppresses opening the web browser on daemon startup</td>
+                </tr>
+                <tr>
+                  <td class="p-2.5 text-emerald-400">--reload</td>
+                  <td class="p-2.5 text-slate-500">flag</td>
+                  <td class="p-2.5 text-slate-500">False</td>
+                  <td class="p-2.5 font-sans">Enables hot-reloading for development environments</td>
+                </tr>
+              </tbody>
+            </table>
+
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 2. WEB SECURITY & WAF MODULES -->
+        <!-- ============================================================== -->
+        <section id="mod-waf-detect" class="space-y-5 pt-4">
+          <h2 class="text-lg font-bold text-white border-b border-cyber-border pb-2">
+            2. Web Security & WAF Evasion Engine
+          </h2>
+          
+          <!-- Submodule 2.1 -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-emerald-400 font-mono">Module 2.1: WAF Fingerprint Prober</h3>
+              <span class="text-[10px] font-mono bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-slate-400">POST /api/web/waf-detect</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+              Dispatches a controlled adversarial request vector (<code class="text-emerald-400 font-mono">/?id=1'%20OR%20'1'='1&x=&lt;script&gt;alert(1)&lt;/script&gt;&__waf_probe=1</code>) to the target host and classifies response attributes against known vendor signatures:
+            </p>
+            <ul class="list-disc list-inside space-y-1 text-xs text-slate-400 pl-1">
+              <li><strong>Cloudflare:</strong> Evaluates <code class="text-slate-200">cf-ray</code>, <code class="text-slate-200">cf-cache-status</code>, and body pattern "error 1010"</li>
+              <li><strong>AWS WAF:</strong> Matches <code class="text-slate-200">x-amzn-requestid</code>, <code class="text-slate-200">x-amzn-trace-id</code>, and HTTP 403 block behavior</li>
+              <li><strong>ModSecurity:</strong> Matches CRS rule triggers, <code class="text-slate-200">not acceptable</code>, and noyb tokens</li>
+              <li><strong>Imperva / Incapsula:</strong> Fingerprints <code class="text-slate-200">x-iinfo</code> and Incident ID tracking strings</li>
+              <li><strong>F5 BIG-IP ASM:</strong> Matches <code class="text-slate-200">x-waf-status</code>, <code class="text-slate-200">bigipserver</code>, and support IDs</li>
+            </ul>
+            <div class="code-block">Request:  POST /api/web/waf-detect {"url": "https://target-portal.com"}
+Response: {"detected": true, "waf": "Cloudflare", "confidence": "95%", "status_code": 403}</div>
+          </div>
+
+          <!-- Submodule 2.2 -->
+          <div id="mod-waf-mutate" class="space-y-3 pt-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-emerald-400 font-mono">Module 2.2: 14 Adversarial Payload Evasion Mutator</h3>
+              <span class="text-[10px] font-mono bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-slate-400">POST /api/web/mutate-payload</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+              Accepts any canonical injection payload (SQLi, XSS, Command Injection, LFI) and applies syntactic transformation rules to bypass deterministic keyword blocklists:
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs font-mono">
+              <div class="p-2.5 bg-cyber-card border border-cyber-border rounded">
+                <span class="text-slate-500 block">1. SQL Comment Splitting</span>
+                <span class="text-emerald-400">UN/**/ION SEL/**/ECT 1,2,3--</span>
+              </div>
+              <div class="p-2.5 bg-cyber-card border border-cyber-border rounded">
+                <span class="text-slate-500 block">2. Inline Hash Comment</span>
+                <span class="text-emerald-400">1/*#*/UNION/*#*/SELECT/*#*/1</span>
+              </div>
+              <div class="p-2.5 bg-cyber-card border border-cyber-border rounded">
+                <span class="text-slate-500 block">3. Double URL Encoding</span>
+                <span class="text-emerald-400">%2527%2520UNION%2520SELECT</span>
+              </div>
+              <div class="p-2.5 bg-cyber-card border border-cyber-border rounded">
+                <span class="text-slate-500 block">4. Alternating Case Jitter</span>
+                <span class="text-emerald-400">1 UnIoN sElEcT nUlL</span>
+              </div>
+              <div class="p-2.5 bg-cyber-card border border-cyber-border rounded">
+                <span class="text-slate-500 block">5. Linux Internal Field Separator</span>
+                <span class="text-emerald-400">cat${IFS}/flag.txt</span>
+              </div>
+              <div class="p-2.5 bg-cyber-card border border-cyber-border rounded">
+                <span class="text-slate-500 block">6. Null-Byte Ingestion</span>
+                <span class="text-emerald-400">' UNION SELECT null%00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submodule 2.3 -->
+          <div id="mod-js-hunter" class="space-y-3 pt-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-emerald-400 font-mono">Module 2.3: JavaScript Secret & Route Hunter</h3>
+              <span class="text-[10px] font-mono bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-slate-400">POST /api/web/analyze-js</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+              Scrapes target HTML for linked script bundles, fetches all files concurrently, and executes regex scanning to identify hidden attack surface:
+            </p>
+            <ul class="list-disc list-inside space-y-1 text-xs text-slate-400 pl-1">
+              <li>API Routes: Matches <code class="text-slate-200">/(?:api|rest|v\d+|graphql|auth|admin)/[^\s'"]+</code></li>
+              <li>AWS Keys: Regex <code class="text-slate-200">AKIA[0-9A-Z]{16}</code></li>
+              <li>JWT Tokens: Base64URL pattern <code class="text-slate-200">eyJ[a-zA-Z0-9_-]{10,}\.eyJ...</code></li>
+              <li>RFC 1918 Private IPv4 Addresses: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16</li>
+            </ul>
+          </div>
+
+          <!-- Submodule 2.4 -->
+          <div id="mod-web-hunt" class="space-y-3 pt-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-emerald-400 font-mono">Module 2.4: Automated Web Crawler & Flag Hunter</h3>
+              <span class="text-[10px] font-mono bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-slate-400">POST /api/web/hunt</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+              Crawls the target URL recursively within the same domain up to configurable depth limits. Automatically extracts HTML comments, hidden form fields, cookies, meta tags, and executes real-time pattern matching against target flag templates (<code class="text-emerald-400 font-mono">flag{...}</code>, <code class="text-emerald-400 font-mono">CTF{...}</code>, or custom user regexes).
+            </p>
+          </div>
+
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 3. DIGITAL FORENSICS MODULES -->
+        <!-- ============================================================== -->
+        <section id="mod-pcap" class="space-y-5 pt-4">
+          <h2 class="text-lg font-bold text-white border-b border-cyber-border pb-2">
+            3. Digital Forensics & Artifact Extraction Engine
+          </h2>
+
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-emerald-400 font-mono">Module 3.1: PCAP Stream Dissection</h3>
+              <span class="text-[10px] font-mono bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-slate-400">POST /api/forensics/analyze</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+              Parses raw PCAP / PCAPNG packet captures, reconstructs TCP conversations, and extracts application-layer payloads:
+            </p>
+            <ul class="list-disc list-inside space-y-1 text-xs text-slate-400 pl-1">
+              <li>HTTP Transaction Reassembly: Rebuilds request URLs, headers, POST bodies, and response HTML</li>
+              <li>DNS Query Logging: Extracts mapped hostname resolutions and TXT record payloads</li>
+              <li>Credential Extraction: Scrapes basic auth strings, authorization tokens, and password fields</li>
+            </ul>
+          </div>
+
+          <div id="mod-evtx" class="space-y-3 pt-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-emerald-400 font-mono">Module 3.2: Windows EVTX Event Log Analyzer</h3>
+              <span class="text-[10px] font-mono bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-slate-400">POST /api/forensics/analyze</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+              Parses binary Windows XML Event Log (<code class="text-slate-200">.evtx</code>) structures and highlights high-signal security events:
+            </p>
+            <ul class="list-disc list-inside space-y-1 text-xs text-slate-400 pl-1">
+              <li>Event ID 4625: An account failed to log on (Identifies brute-force source IPs and targeted user names)</li>
+              <li>Event ID 4688: A new process has been created (Extracts Command Line strings, parent process IDs)</li>
+              <li>Event ID 4720 / 4726: User account creation and deletion timelines</li>
+            </ul>
+          </div>
+
+          <div id="mod-magic-bytes" class="space-y-3 pt-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-emerald-400 font-mono">Module 3.3: Magic Bytes Repair & File Carving</h3>
+              <span class="text-[10px] font-mono bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-slate-400">GET /api/forensics/download-extracted</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+              Scans input buffers against a database of 60+ known file signatures. When a corrupted header is identified (e.g. invalid PNG header bytes), the repair engine patches the canonical magic bytes (<code class="text-emerald-400 font-mono">\x89PNG\r\n\x1a\n</code>). Any embedded sub-files (ZIP, ELF, JPEG) are carved out into a downloadable ZIP archive.
+            </p>
+
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 4. CRYPTANALYSIS MODULES -->
+        <!-- ============================================================== -->
+        <section id="mod-crypto-decoders" class="space-y-5 pt-4">
+          <h2 class="text-lg font-bold text-white border-b border-cyber-border pb-2">
+            4. Cryptanalysis & Automated Decoders
+          </h2>
+
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-emerald-400 font-mono">Module 4.1: 20+ Multi-Scheme Auto Decoder</h3>
+              <span class="text-[10px] font-mono bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-slate-400">POST /api/crypto/decode</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+              Recursively probes unknown strings through multi-layered decoding passes:
+            </p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono text-slate-300">
+              <div class="p-2 bg-cyber-card border border-cyber-border rounded text-center">Base64 / URL-Safe</div>
+              <div class="p-2 bg-cyber-card border border-cyber-border rounded text-center">Base32 / Base58</div>
+              <div class="p-2 bg-cyber-card border border-cyber-border rounded text-center">Base85 / Ascii85</div>
+              <div class="p-2 bg-cyber-card border border-cyber-border rounded text-center">Hexadecimal</div>
+              <div class="p-2 bg-cyber-card border border-cyber-border rounded text-center">Binary (01)</div>
+              <div class="p-2 bg-cyber-card border border-cyber-border rounded text-center">ROT13 / ROT47</div>
+              <div class="p-2 bg-cyber-card border border-cyber-border rounded text-center">Atbash Cipher</div>
+              <div class="p-2 bg-cyber-card border border-cyber-border rounded text-center">URL & HTML Entities</div>
+            </div>
+          </div>
+
+          <div id="mod-caesar-matrix" class="space-y-3 pt-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-emerald-400 font-mono">Module 4.2: Complete Caesar 25-Shift Matrix</h3>
+              <span class="text-[10px] font-mono bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-slate-400">POST /api/crypto/caesar-all</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+              Renders all 25 possible alphabetic rotations of an input string in parallel, automatically scanning each output line against regex flag patterns (<code class="text-emerald-400 font-mono">(?:flag|ctf)\{[^}]+\}</code>).
+            </p>
+          </div>
+
+          <div id="mod-xor-brute" class="space-y-3 pt-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-emerald-400 font-mono">Module 4.3: Single-Byte XOR 256 Brute-Force</h3>
+              <span class="text-[10px] font-mono bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-slate-400">POST /api/crypto/xor-bruteforce</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+              Iterates through all possible 256 8-bit keys ($0 \le k \le 255$). Each candidate plaintext is evaluated using an English letter frequency scoring matrix (ETAOIN SHRDLU). The candidate with the highest statistical likelihood is selected with calculated confidence metrics.
+            </p>
+          </div>
+
+          <div id="mod-endianness" class="space-y-3 pt-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-emerald-400 font-mono">Module 4.4: Endianness & Pwntools Byte Converter</h3>
+              <span class="text-[10px] font-mono bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-slate-400">POST /api/crypto/endianness</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+              Converts raw hexadecimal memory addresses (e.g. <code class="text-slate-200">0x080484b6</code>) into 32-bit and 64-bit little-endian byte representations (<code class="text-emerald-400">\xb6\x84\x04\x08</code>) and synthesizes Python Pwntools code (<code class="text-emerald-400">p32(0x080484b6)</code>, <code class="text-emerald-400">p64(0x080484b6)</code>).
+            </p>
+          </div>
+
+          <div id="mod-vigenere" class="space-y-3 pt-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-emerald-400 font-mono">Module 4.5: Polyalphabetic Vigenere Solver</h3>
+              <span class="text-[10px] font-mono bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-slate-400">POST /api/crypto/vigenere</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+              Deciphers polyalphabetic substitution ciphers using either a known keyword or statistical Friedman Index of Coincidence (IoC) with Kasiski examination to estimate the key length, followed by per-slice frequency analysis.
+            </p>
+          </div>
+
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 5. IDENTITY & MATHEMATICAL MODULES -->
+        <!-- ============================================================== -->
+        <section id="mod-jwt" class="space-y-5 pt-4">
+          <h2 class="text-lg font-bold text-white border-b border-cyber-border pb-2">
+            5. Identity Verification & Mathematical Attacks
+          </h2>
+
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-emerald-400 font-mono">Module 5.1: JWT Security Studio</h3>
+              <span class="text-[10px] font-mono bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-slate-400">POST /api/jwt/decode, /api/jwt/forge</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+              Performs security audits on JSON Web Tokens:
+            </p>
+            <ul class="list-disc list-inside space-y-1 text-xs text-slate-400 pl-1">
+              <li><strong>Algorithm Confusion:</strong> Converts HS256/RS256 tokens into unsigned <code class="text-emerald-400 font-mono">alg: none</code> tokens</li>
+              <li><strong>Claims Manipulation:</strong> Allows arbitrary modification of user identity fields (e.g. <code class="text-slate-200">user: admin</code>, <code class="text-slate-200">role: root</code>)</li>
+              <li><strong>Offline HMAC Cracker:</strong> Multi-threaded dictionary verification against top 50,000 weak secret passwords</li>
+            </ul>
+          </div>
+
+          <div id="mod-rsa" class="space-y-3 pt-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-emerald-400 font-mono">Module 5.2: RSA Mathematical Attacks</h3>
+              <span class="text-[10px] font-mono bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-slate-400">POST /api/rsa/attack</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+              Automates modular arithmetic factoring of composite modulus $n = p \cdot q$ and calculates the private decryption exponent $d \equiv e^{-1} \pmod{\phi(n)}$:
+            </p>
+            <ul class="list-disc list-inside space-y-1 text-xs text-slate-400 pl-1">
+              <li><strong>Fermat Factorization:</strong> High-speed factoring when prime factors are close ($|p - q| < n^{0.25}$)</li>
+              <li><strong>Wiener's Continued Fractions Attack:</strong> Recovers small private exponent when $d < \frac{1}{3} n^{0.25}$</li>
+              <li><strong>Small Public Exponent ($e = 3$):</strong> Calculates integer cube root when ciphertext $c < n$</li>
+              <li><strong>FactorDB Integration:</strong> Queries online prime factorization tables for large known composites</li>
+            </ul>
+          </div>
+
+          <div id="mod-hash" class="space-y-3 pt-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-emerald-400 font-mono">Module 5.3: Offline Hash Identification & Cracking</h3>
+              <span class="text-[10px] font-mono bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-slate-400">POST /api/hash/crack</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+              Accepts hexadecimal digests and inspects byte length, entropy, and character distributions to identify target hash families (MD5, SHA1, SHA256, NTLM, bcrypt). Executes offline lookup against high-probability rainbow dictionaries and salted wordlists with zero network exposure.
+            </p>
+          </div>
+
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 6. BINARY & NETWORKING MODULES -->
+        <!-- ============================================================== -->
+        <section id="mod-checksec" class="space-y-5 pt-4">
+          <h2 class="text-lg font-bold text-white border-b border-cyber-border pb-2">
+            6. Binary Exploitation & Networking Solvers
+          </h2>
+
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-emerald-400 font-mono">Module 6.1: Binary Checksec & Mitigation Audit</h3>
+              <span class="text-[10px] font-mono bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-slate-400">POST /api/binary/inspect</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+              Examines ELF and PE binary headers for exploit mitigations:
+            </p>
+            <ul class="list-disc list-inside space-y-1 text-xs text-slate-400 pl-1">
+              <li><strong>NX / DEP:</strong> Checks if GNU_STACK segment lacks executable (X) permissions</li>
+              <li><strong>Stack Canary:</strong> Scans symbol table for <code class="text-slate-200">__stack_chk_fail</code></li>
+              <li><strong>PIE (Position Independent Executable):</strong> Distinguishes ET_EXEC (fixed address) from ET_DYN (randomized base)</li>
+              <li><strong>Dangerous C Functions:</strong> Audits calls to <code class="text-slate-200">gets</code>, <code class="text-slate-200">strcpy</code>, <code class="text-slate-200">system</code></li>
+            </ul>
+          </div>
+
+          <div id="mod-netcat" class="space-y-3 pt-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-emerald-400 font-mono">Module 6.2: TCP Netcat Interactive Socket Solver</h3>
+              <span class="text-[10px] font-mono bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-slate-400">POST /api/netcat/solve</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+              Automates responses to interactive TCP challenge services (e.g. arithmetic speed challenges, string reversals, or cryptographic verification loops) via socket automation.
+            </p>
+          </div>
+
+          <div id="mod-shellcraft" class="space-y-3 pt-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-emerald-400 font-mono">Module 6.3: Shellcraft & Reverse Shell Generator</h3>
+              <span class="text-[10px] font-mono bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-slate-400">Offline Shellcraft Engine</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+              Generates customized one-liner reverse shells and payload templates for Linux, Windows, macOS, and container environments across 12 languages (Bash, Python, Perl, PHP, Ruby, Netcat, PowerShell, Node.js, Socat, AWK, Golang, and Java) with integrated Base64 and URL encoding.
+            </p>
+          </div>
+
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 7. TACTICAL INTELLIGENCE & MACHINE LEARNING -->
+        <!-- ============================================================== -->
+        <section id="mod-classify" class="space-y-5 pt-4">
+          <h2 class="text-lg font-bold text-white border-b border-cyber-border pb-2">
+            7. Tactical Intelligence & Machine Learning
+          </h2>
+
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-emerald-400 font-mono">Module 7.1: Machine Learning Challenge Classifier</h3>
+              <span class="text-[10px] font-mono bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-slate-400">POST /api/classify</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+              Utilizes an offline natural language scoring model trained on thousands of cyber competition challenges and triage reports. Analyzes challenge descriptions, hints, and file structures to categorize targets and recommend highest-yield tools and attack paths.
+            </p>
+          </div>
+
+          <div id="mod-chat-advisor" class="space-y-3 pt-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-emerald-400 font-mono">Module 7.2: Tactical AI Security Copilot</h3>
+              <span class="text-[10px] font-mono bg-cyber-card px-2 py-0.5 rounded border border-cyber-border text-slate-400">POST /api/chat</span>
+            </div>
+            <p class="text-xs leading-relaxed">
+              Context-aware security assistant integrated with local rule-based heuristic knowledge. Provides methodology guidance, syntax generation, and triage steps for unknown protocol flags or unusual binary protections without sending data outside the local host.
+            </p>
+          </div>
+
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- 3. GLOBAL FOOTER -->
+  <!-- ============================================================== -->
+  <footer class="border-t border-cyber-border py-12 bg-cyber-black text-xs font-mono text-slate-500 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <img src="logo-mark.png" alt="SHADOW CAT" class="h-6 w-auto opacity-70" />
+        <span class="text-slate-300 font-bold">SHADOW CAT Documentation Center</span>
+      </div>
+      <div class="flex items-center gap-6 text-slate-400">
+        <a href="index.html" class="hover:text-emerald-400 transition-colors">Overview</a>
+        <a href="download.html" class="hover:text-emerald-400 transition-colors">Download</a>
+        <a href="docs.html" class="hover:text-emerald-400 transition-colors">Documentation</a>
+        <a href="security.html" class="hover:text-emerald-400 transition-colors">Security Policy</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

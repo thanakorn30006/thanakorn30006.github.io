@@ -1,0 +1,271 @@
+/* ==========================================================================
+   SHADOW CAT Cyber Operations Suite — Design System & Theme Engine
+   ========================================================================== */
+
+/* 1. CSS CUSTOM PROPERTIES (TOKENS) */
+:root {
+  --bg-primary: #04070d;
+  --bg-secondary: #070b14;
+  --bg-card: #0a101d;
+  --bg-card-sub: #0f172a;
+  --bg-card-hover: #111a2e;
+  --border-color: #172236;
+  --border-hover: #2a3b5c;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --accent-emerald: #10b981;
+  --accent-cyan: #06b6d4;
+  --code-bg: #030712;
+  --code-border: #1e293b;
+  --code-text: #10b981;
+  --nav-backdrop: rgba(4, 7, 13, 0.88);
+  --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+}
+
+/* 2. LIGHT MODE THEME TOKENS (Refined, High-Contrast & Elegant) */
+html.light {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-sub: #f1f5f9;
+  --bg-card-hover: #f8fafc;
+  --border-color: #e2e8f0;
+  --border-hover: #cbd5e1;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --accent-emerald: #059669;
+  --accent-cyan: #0891b2;
+  --code-bg: #090d16;
+  --code-border: #1e293b;
+  --code-text: #34d399;
+  --nav-backdrop: rgba(255, 255, 255, 0.92);
+  --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
+}
+
+/* Base Body Application */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+header {
+  background-color: var(--nav-backdrop) !important;
+  border-color: var(--border-color) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Background Utility Mapping */
+.bg-cyber-black {
+  background-color: var(--bg-primary) !important;
+}
+
+.bg-cyber-darker {
+  background-color: var(--bg-secondary) !important;
+}
+
+.bg-cyber-card {
+  background-color: var(--bg-card) !important;
+  box-shadow: var(--card-shadow);
+}
+
+.border-cyber-border {
+  border-color: var(--border-color) !important;
+}
+
+.border-cyber-borderHover {
+  border-color: var(--border-hover) !important;
+}
+
+/* Terminal & Code Windows Always Maintain High-Contrast Hacker Aesthetic */
+.code-block, pre, .terminal-window, .code-glow {
+  background-color: var(--code-bg) !important;
+  border-color: var(--code-border) !important;
+  color: var(--code-text) !important;
+}
+
+/* ==========================================================================
+   LIGHT MODE SPECIFIC REFINEMENTS (Solves "Not Pretty in Light Mode")
+   ========================================================================== */
+
+/* 1. Text Colors & Hierarchy */
+html.light .text-white {
+  color: #0f172a !important;
+}
+
+html.light .text-slate-100,
+html.light .text-slate-200 {
+  color: #1e293b !important;
+}
+
+html.light .text-slate-300 {
+  color: #334155 !important;
+}
+
+html.light .text-slate-400 {
+  color: #475569 !important;
+}
+
+html.light .text-slate-500 {
+  color: #64748b !important;
+}
+
+/* 2. Hero Gradient Text in Light Mode (Deep Emerald -> Teal -> Cyan for legibility) */
+html.light .bg-clip-text {
+  background-image: linear-gradient(135deg, #059669 0%, #0d9488 50%, #0284c7 100%) !important;
+}
+
+/* 3. Soften Background Blurs in Light Mode */
+html.light .blur-\[120px\] {
+  opacity: 0.25 !important;
+  background-color: #a7f3d0 !important;
+}
+
+/* 4. Badges & Status Pills in Light Mode */
+html.light .bg-emerald-950,
+html.light [class*="bg-emerald-950"] {
+  background-color: #ecfdf5 !important;
+  border-color: #a7f3d0 !important;
+  color: #047857 !important;
+}
+
+html.light .bg-slate-800,
+html.light [class*="bg-slate-800"] {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+  color: #334155 !important;
+}
+
+html.light .bg-cyan-950,
+html.light [class*="bg-cyan-950"] {
+  background-color: #ecfeff !important;
+  border-color: #a5f3fc !important;
+  color: #0e7490 !important;
+}
+
+html.light .bg-red-950,
+html.light [class*="bg-red-950"] {
+  background-color: #fef2f2 !important;
+  border-color: #fecaca !important;
+  color: #b91c1c !important;
+}
+
+html.light .text-emerald-400 {
+  color: #059669 !important;
+}
+
+html.light .text-cyan-400 {
+  color: #0891b2 !important;
+}
+
+html.light .text-yellow-400 {
+  color: #d97706 !important;
+}
+
+/* 5. Terminal Container Styling in Light Mode */
+html.light #quick-box,
+html.light #install > div {
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.12), 0 5px 15px -5px rgba(0, 0, 0, 0.06);
+}
+
+html.light .tab-btn.font-medium,
+html.light .platform-tab.bg-cyber-card {
+  background-color: #f1f5f9 !important;
+  color: #475569 !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light .tab-btn.font-medium:hover,
+html.light .platform-tab.bg-cyber-card:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+/* 6. Comparison Cards in Light Mode */
+html.light .problem-card {
+  background-color: #fffaf0 !important;
+  border-color: #fed7aa !important;
+}
+
+html.light .solution-card {
+  background-color: #f0fdf4 !important;
+  border-color: #86efac !important;
+  box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.12) !important;
+}
+
+/* 7. Pro Operator Highlight Card in Pricing */
+html.light .pro-card {
+  background-color: #f0fdf4 !important;
+  border-color: #059669 !important;
+  box-shadow: 0 20px 30px -10px rgba(16, 185, 129, 0.15) !important;
+}
+
+/* 8. Documentation Sidebar in Light Mode */
+html.light aside {
+  border-color: #e2e8f0 !important;
+}
+
+html.light aside a:hover {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* 9. Tables in Light Mode */
+html.light table thead {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light table tbody tr:hover {
+  background-color: #f1f5f9 !important;
+}
+
+/* 10. Global Footer */
+html.light footer {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* 11. Theme Switcher Icon Button */
+.theme-toggle-btn {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  cursor: pointer;
+}
+
+html.dark .theme-toggle-btn {
+  background-color: #0a101d;
+  border: 1px solid #172236;
+  color: #fbbf24;
+}
+
+html.dark .theme-toggle-btn:hover {
+  background-color: #172236;
+  border-color: #fbbf24;
+  color: #fef08a;
+  transform: translateY(-1px);
+}
+
+html.light .theme-toggle-btn {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+html.light .theme-toggle-btn:hover {
+  background-color: #f1f5f9;
+  border-color: #0284c7;
+  color: #0284c7;
+  transform: translateY(-1px);
+}

@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com https://js.stripe.com; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com https://js.stripe.com; img-src 'self' data: https:; connect-src 'self' http://localhost:8000 ws://localhost:8000 https://api.stripe.com; frame-src 'self' https://js.stripe.com; base-uri 'self'; form-action 'self';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" type="image/png" href="logo-mark.png" />
+  <title>Pricing & Licensing — SHADOW CAT Suite</title>
+  
+  <meta name="description" content="Transparent, predictable pricing for SHADOW CAT. Free 100% air-gapped Community edition for CTF players, and Pro Operator licenses for commercial red teams." />
+  <meta name="author" content="SHADOW CAT Security Team" />
+
+  <!-- Open Graph & Google Previews -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Pricing & Licensing — SHADOW CAT Suite" />
+  <meta property="og:description" content="Transparent pricing for local air-gapped cybersecurity software. Community free forever, Pro Operator lifetime." />
+  <meta property="og:image" content="screenshot-payloads.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="screenshot-payloads.png" />
+  <link rel="canonical" href="https://thanakorn30006.github.io/pricing.html" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#04070d" />
+  <meta property="og:site_name" content="SHADOW CAT Cyber Suite" />
+
+  <!-- Structured Data JSON-LD for Google Pricing FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is the $199 Pro Operator license really lifetime?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. You receive a perpetual license key valid for all v1.x major and minor releases forever. No recurring monthly or annual credit card charges."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use the Community Edition for commercial penetration testing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Community Edition is intended for academic research, CTF competitions, and non-commercial learning. For billable client engagements, a Pro Operator license is required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does SHADOW CAT validate licenses without internet access?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "All licenses use offline Ed25519 cryptographic signatures. Your license key file is verified locally against our compiled public key without phoning home."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the refund policy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We offer a 30-day, no-questions-asked refund guarantee. If the suite does not accelerate your operational workflow, simply reply to your receipt email."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Fira Code', 'monospace'],
+          },
+          colors: {
+            cyber: {
+              black: 'var(--bg-primary)',
+              darker: 'var(--bg-secondary)',
+              card: 'var(--bg-card)',
+              border: 'var(--border-color)',
+              borderHover: 'var(--border-hover)',
+              emerald: '#10b981',
+              cyan: '#06b6d4',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Site Core CSS & JS -->
+  <link rel="stylesheet" href="site-core.css" />
+  <script src="site-core.js"></script>
+
+  <style>
+    .glow-emerald {
+      box-shadow: 0 0 50px -10px rgba(16, 185, 129, 0.15);
+    }
+  </style>
+</head>
+
+<body class="bg-cyber-black text-slate-200 font-sans antialiased selection:bg-emerald-500 selection:text-black min-h-screen flex flex-col">
+
+  <!-- ============================================================== -->
+  <!-- 1. NAVIGATION BAR -->
+  <!-- ============================================================== -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-cyber-black/90 border-b border-cyber-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="logo-mark.png" alt="SHADOW CAT" class="h-9 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform" />
+        <div class="flex flex-col">
+          <div class="font-mono font-bold tracking-tight text-sm text-white flex items-center gap-1.5 leading-none">
+            <span>SHADOW</span>
+            <span class="text-emerald-400">CAT</span>
+          </div>
+          <span class="text-[9px] font-mono text-slate-400 mt-0.5">Pricing & Licensing</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-6 text-xs font-medium text-slate-300">
+        <a href="index.html" class="hover:text-emerald-400 transition-colors">Overview</a>
+        <a href="download.html" class="hover:text-emerald-400 transition-colors">Download</a>
+        <a href="docs.html" class="hover:text-emerald-400 transition-colors">Documentation</a>
+        <a href="pricing.html" class="text-emerald-400 font-semibold border-b-2 border-emerald-400 pb-1">Pricing</a>
+        <a href="about.html" class="hover:text-emerald-400 transition-colors">About Us</a>
+        <a href="security.html" class="hover:text-emerald-400 transition-colors">Security Policy</a>
+      </nav>
+
+      <!-- Action & Theme Controls -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button type="button" class="theme-toggle-btn cursor-pointer" title="Toggle Dark/Light Mode">
+          
+        </button>
+
+        <a href="download.html" class="hidden sm:inline-block px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs transition-all shadow-md">
+          Download Free
+        </a>
+
+        <!-- Mobile Navigation Menu Toggle Button -->
+        <button type="button" id="mobile-menu-toggle" aria-expanded="false" aria-label="Toggle navigation menu" class="md:hidden p-2 rounded-lg text-slate-300 hover:text-white bg-cyber-darker border border-cyber-border transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Responsive Dropdown Navigation -->
+    <div id="mobile-nav-menu" class="hidden md:hidden border-t border-cyber-border bg-cyber-black/95 backdrop-blur-md px-4 py-3 space-y-1 font-mono text-xs">
+      <a href="index.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Overview</a>
+      <a href="download.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Download</a>
+      <a href="docs.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Documentation</a>
+      <a href="pricing.html" class="block px-3 py-2 rounded-lg text-emerald-400 font-bold bg-cyber-darker">Pricing</a>
+      <a href="about.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">About Us</a>
+      <a href="security.html" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-400 hover:bg-cyber-darker">Security Policy</a>
+      <div class="pt-2 sm:hidden border-t border-cyber-border">
+        <a href="download.html" class="flex items-center justify-center gap-2 w-full py-2 rounded-lg bg-emerald-500 text-black font-semibold text-xs">
+          <span>Download Free</span>
+        </a>
+      </div>
+    </div>
+    </div>
+  </header>
+
+  <!-- ============================================================== -->
+  <!-- 2. HERO SECTION -->
+  <!-- ============================================================== -->
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+    
+    <div class="text-center space-y-4 max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-800 text-emerald-400 text-xs font-mono font-semibold">
+        [ZERO CLOUD LOCK-IN &bull; LOCAL-FIRST]
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        Transparent, Practitioner-First Pricing
+      </h1>
+      <p class="text-sm sm:text-base text-slate-400 leading-relaxed">
+        Free and open-source core for CTF players and independent researchers. Commercial licenses with offline cryptographic verification for active penetration testers and enterprise defense teams.
+      </p>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- 3. PRICING TIERS -->
+    <!-- ============================================================== -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+      
+      <!-- Tier 1: Community (Free Forever) -->
+      <div class="bg-cyber-card border border-cyber-border rounded-2xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
+        <div class="space-y-4">
+          <div class="inline-block px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-mono text-[11px] font-bold">
+            [OPEN SOURCE CORE]
+          </div>
+          <h2 class="text-2xl font-bold text-white font-mono">Community</h2>
+          <p class="text-xs text-slate-400">
+            For CTF competitors, university security students, and independent reverse engineers.
+          </p>
+          <div class="pt-2">
+            <span class="text-4xl font-extrabold text-white font-mono">$0</span>
+            <span class="text-xs text-slate-500 font-mono">/ Free Forever</span>
+          </div>
+
+          <div class="border-t border-cyber-border pt-4 space-y-2.5 text-xs text-slate-300">
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-400 font-mono font-bold">[+]</span>
+              <span>100% Local Air-Gapped Single-Port Architecture</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-400 font-mono font-bold">[+]</span>
+              <span>All 20 Core Modules (WAF, PCAP, Crypto, RSA, EVTX)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-400 font-mono font-bold">[+]</span>
+              <span>Unlimited Offline Scans & Payload Mutations</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-400 font-mono font-bold">[+]</span>
+              <span>Native macOS, Linux, and Windows PowerShell Installers</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-400 font-mono font-bold">[+]</span>
+              <span>Community GitHub & Discord Support</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="download.html" class="block w-full text-center py-2.5 rounded-xl bg-cyber-darker hover:bg-slate-800 text-white font-mono font-bold text-xs border border-cyber-border transition-colors">
+          Download Free Suite
+        </a>
+      </div>
+
+      <!-- Tier 2: Pro Operator (Highlighted) -->
+      <div class="pro-card bg-cyber-darker border-2 border-emerald-500 rounded-2xl p-6 sm:p-8 flex flex-col justify-between space-y-6 relative shadow-2xl glow-emerald">
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-emerald-500 text-black font-mono font-extrabold text-[10px] uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
+          Recommended for Red Teams
+        </div>
+
+        <div class="space-y-4">
+          <div class="inline-block px-2.5 py-1 rounded bg-emerald-950 text-emerald-400 border border-emerald-800 font-mono text-[11px] font-bold">
+            [PRO OPERATOR]
+          </div>
+          <h2 class="text-2xl font-bold text-white font-mono">Pro Operator</h2>
+          <p class="text-xs text-slate-400">
+            Engineered for active penetration testers, security contractors, and professional red teams.
+          </p>
+          <div class="pt-2">
+            <span class="text-4xl font-extrabold text-white font-mono">$199</span>
+            <span class="text-xs text-slate-500 font-mono">/ One-time Lifetime License</span>
+          </div>
+
+          <div class="border-t border-cyber-border pt-4 space-y-2.5 text-xs text-slate-300">
+            <div class="flex items-center gap-2 font-medium text-emerald-400">
+              <span class="font-mono font-bold">[+]</span>
+              <span>Everything in Community Suite, plus:</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-400 font-mono font-bold">[+]</span>
+              <span>Executive Pentest PDF & Markdown Report Generator</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-400 font-mono font-bold">[+]</span>
+              <span>Custom Evasion Rule Builder & Obfuscator Pipeline</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-400 font-mono font-bold">[+]</span>
+              <span>Automated CTF Flag Vault & Webhook Submission</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-400 font-mono font-bold">[+]</span>
+              <span>Offline Cryptographic License Token (Zero Phoning Home)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-400 font-mono font-bold">[+]</span>
+              <span>Priority Security Updates & Direct Telegram/Email SLA</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="checkout.html" class="block w-full text-center py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-mono font-extrabold text-xs transition-all shadow-md">
+          Get Pro Operator License &rarr;
+        </a>
+      </div>
+
+      <!-- Tier 3: Enterprise & Defense Lab -->
+      <div class="bg-cyber-card border border-cyber-border rounded-2xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
+        <div class="space-y-4">
+          <div class="inline-block px-2.5 py-1 rounded bg-slate-800 text-slate-300 font-mono text-[11px] font-bold">
+            [DEFENSE & ENTERPRISE]
+          </div>
+          <h2 class="text-2xl font-bold text-white font-mono">Defense Lab</h2>
+          <p class="text-xs text-slate-400">
+            For classified government research labs, SCIF environments, and managed security service providers (MSSPs).
+          </p>
+          <div class="pt-2">
+            <span class="text-4xl font-extrabold text-white font-mono">Custom</span>
+            <span class="text-xs text-slate-500 font-mono">/ Annual Multi-Seat</span>
+          </div>
+
+          <div class="border-t border-cyber-border pt-4 space-y-2.5 text-xs text-slate-300">
+            <div class="flex items-center gap-2 font-medium text-cyan-400">
+              <span class="font-mono font-bold">[+]</span>
+              <span>Everything in Pro Operator, plus:</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-cyan-400 font-mono font-bold">[+]</span>
+              <span>Air-Gapped Floating License Server (SCIF Compliant)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-cyan-400 font-mono font-bold">[+]</span>
+              <span>Custom YARA, Sigma & Proprietary Protocol Parsers</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-cyan-400 font-mono font-bold">[+]</span>
+              <span>Hardened Multi-Node Kubernetes & Podman Helm Charts</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-cyan-400 font-mono font-bold">[+]</span>
+              <span>4-Hour Emergency Incident Response SLA</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-cyan-400 font-mono font-bold">[+]</span>
+              <span>SOC 2 Type II Vendor Compliance Audit Package</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="mailto:enterprise@shadowcat-security.local?subject=Enterprise%20Inquiry" class="block w-full text-center py-2.5 rounded-xl bg-cyber-darker hover:bg-slate-800 text-white font-mono font-bold text-xs border border-cyber-border transition-colors">
+          Contact Defense Team
+        </a>
+      </div>
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- 3.5 POST-PURCHASE ACTIVATION WORKFLOW (What Happens Next?) -->
+    <!-- ============================================================== -->
+    <div id="activation-guide" class="rounded-2xl bg-cyber-card border border-cyber-border p-6 sm:p-10 space-y-8">
+      <div class="border-b border-cyber-border pb-4 space-y-1">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 border border-emerald-800 text-emerald-400 text-xs font-mono font-semibold">
+          [POST-PURCHASE ONBOARDING]
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-mono">
+          What Happens After You Buy?
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-400 font-sans">
+          Complete end-to-end activation guide. No waiting for manual approvals, no telemetry, and 100% offline license validation.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-sans text-xs">
+        <!-- Step 1: Automated Delivery -->
+        <div class="bg-cyber-darker border border-cyber-border rounded-xl p-5 space-y-3 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between font-mono">
+              <span class="text-emerald-400 font-bold text-sm">STEP 1</span>
+              <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">&lt; 10 Seconds</span>
+            </div>
+            <h3 class="font-bold text-white text-sm font-mono">Instant Key Delivery</h3>
+            <p class="text-slate-300 leading-relaxed">
+              Immediately upon checkout completion, your unique cryptographic license file and token are generated by our automated pipeline:
+            </p>
+            <ul class="list-disc list-inside space-y-1 text-slate-400 font-mono text-[11px] pt-1">
+              <li>File: <code class="text-emerald-400">shadowcat.lic</code> (Ed25519 signature)</li>
+              <li>Token: <code class="text-cyan-400">SHADOW-PRO-XXXX-XXXX</code></li>
+              <li>PDF Invoice & Perpetual License Certificate</li>
+              <li>Private Red Team Discord/Telegram Invite</li>
+            </ul>
+          </div>
+          <div class="pt-2 border-t border-cyber-border text-[11px] text-slate-500 font-mono">
+            Delivered directly to your checkout email.
+          </div>
+        </div>
+
+        <!-- Step 2: 1-Click Offline Activation -->
+        <div class="bg-cyber-darker border border-cyber-border rounded-xl p-5 space-y-3 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between font-mono">
+              <span class="text-cyan-400 font-bold text-sm">STEP 2</span>
+              <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">3 Ways to Activate</span>
+            </div>
+            <h3 class="font-bold text-white text-sm font-mono">Offline Key Injection</h3>
+            <p class="text-slate-300 leading-relaxed">
+              Inject your license into your local SHADOW CAT installation without internet:
+            </p>
+            <div class="space-y-1.5 pt-1 text-[11px] font-mono">
+              <div class="p-2 rounded bg-black/60 border border-cyber-border text-slate-300">
+                <strong class="text-emerald-400">Option A (Web UI):</strong> Open <code class="text-white">localhost:8000</code> &rarr; Settings &rarr; Drop <code class="text-emerald-400">shadowcat.lic</code>.
+              </div>
+              <div class="p-2 rounded bg-black/60 border border-cyber-border text-slate-300">
+                <strong class="text-cyan-400">Option B (Terminal):</strong> Copy file to <code class="text-white">~/shadowcat/shadowcat.lic</code>.
+              </div>
+              <div class="p-2 rounded bg-black/60 border border-cyber-border text-slate-300">
+                <strong class="text-yellow-400">Option C (Env Var):</strong> <code class="text-white">export SHADOWCAT_KEY="..."</code>.
+              </div>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-cyber-border text-[11px] text-slate-500 font-mono">
+            Zero packets transmitted outside your device.
+          </div>
+        </div>
+
+        <!-- Step 3: Instant Feature Unlock -->
+        <div class="bg-cyber-darker border border-cyber-border rounded-xl p-5 space-y-3 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between font-mono">
+              <span class="text-yellow-400 font-bold text-sm">STEP 3</span>
+              <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded">Perpetual</span>
+            </div>
+            <h3 class="font-bold text-white text-sm font-mono">Full Capability Unlock</h3>
+            <p class="text-slate-300 leading-relaxed">
+              The local daemon mathematically verifies the signature against its compiled public key and unlocks Pro features forever:
+            </p>
+            <ul class="list-disc list-inside space-y-1 text-slate-400 font-mono text-[11px] pt-1">
+              <li>Status badge flips to: <span class="text-emerald-400 font-bold">[PRO OPERATOR]</span></li>
+              <li>Executive PDF Pentest Reporting enabled</li>
+              <li>Custom Payload Mutator rule editor active</li>
+              <li>Automated Challenge Flag Vault unlocked</li>
+              <li>Commercial Red Team Engagement clearance</li>
+            </ul>
+          </div>
+          <div class="pt-2 border-t border-cyber-border text-[11px] text-slate-500 font-mono">
+            Never expires. No recurring charges.
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Interactive Demo Box -->
+      <div class="bg-cyber-darker border border-cyber-border rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-xs">
+        <div class="space-y-0.5">
+          <div class="text-white font-bold flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>Ready to get a Pro Operator license?</span>
+          </div>
+          <p class="text-slate-400 font-sans text-xs">
+            See how to purchase and activate your perpetual offline license.
+          </p>
+        </div>
+        <a href="checkout.html" class="px-5 py-2.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-bold shrink-0 transition-colors">
+          Get Pro Operator License &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- 4. AIRGAP CRYPTOGRAPHIC LICENSE GUARANTEE -->
+    <!-- ============================================================== -->
+    <div class="rounded-2xl bg-cyber-darker border border-cyber-border p-6 sm:p-8 space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-cyber-border pb-4">
+        <div>
+          <h3 class="text-lg font-bold text-white font-mono flex items-center gap-2">
+            <span class="text-emerald-400">[AIR-GAP GUARANTEE]</span> How Pro & Enterprise Licenses Work Offline
+          </h3>
+          <p class="text-xs text-slate-400 mt-1">
+            We never require an active internet connection to validate your license.
+          </p>
+        </div>
+        <span class="text-[11px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800 px-3 py-1 rounded shrink-0">
+          Ed25519 Cryptographic Signatures
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-sans text-slate-300">
+        <div class="space-y-1">
+          <div class="font-bold text-white font-mono">1. Local Public Key Verification</div>
+          <p class="leading-relaxed">
+            The software bundle contains our compiled Ed25519 public verification key. It checks signatures locally without sending packets outside your machine.
+          </p>
+        </div>
+        <div class="space-y-1">
+          <div class="font-bold text-white font-mono">2. Zero Phone-Home Telemetry</div>
+          <p class="leading-relaxed">
+            There are zero analytics pings, no license server polls, and no heartbeat beacons. Your operational security (OPSEC) remains 100% intact.
+          </p>
+        </div>
+        <div class="space-y-1">
+          <div class="font-bold text-white font-mono">3. Frictionless Key Injection</div>
+          <p class="leading-relaxed">
+            Drop your signed <code class="text-emerald-400 font-mono">shadowcat.lic</code> file into <code class="text-slate-300 font-mono">~/shadowcat/</code> or pass it via environment variable <code class="text-slate-300 font-mono">SHADOWCAT_KEY</code>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- 5. FEATURE COMPARISON MATRIX -->
+    <!-- ============================================================== -->
+    <div class="space-y-6">
+      <div class="border-b border-cyber-border pb-3">
+        <h2 class="text-xl font-bold text-white font-mono flex items-center gap-2">
+          <span class="text-emerald-400">[MATRIX]</span> Complete Capability Comparison
+        </h2>
+        <p class="text-xs text-slate-400 mt-1">Detailed breakdown of features across all distribution tiers.</p>
+      </div>
+
+      <div class="overflow-x-auto border border-cyber-border rounded-xl">
+        <table class="w-full text-left text-xs font-mono">
+          <thead class="bg-cyber-card border-b border-cyber-border text-slate-400">
+            <tr>
+              <th class="p-3.5">Capability / Specification</th>
+              <th class="p-3.5 text-center">Community ($0)</th>
+              <th class="p-3.5 text-center text-emerald-400">Pro Operator ($199)</th>
+              <th class="p-3.5 text-center text-cyan-400">Defense Lab</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-cyber-border text-slate-300">
+            <tr class="hover:bg-slate-900/50">
+              <td class="p-3.5 font-bold text-white">Air-Gapped Local Daemon</td>
+              <td class="p-3.5 text-center text-emerald-400">[YES] 100%</td>
+              <td class="p-3.5 text-center text-emerald-400">[YES] 100%</td>
+              <td class="p-3.5 text-center text-emerald-400">[YES] 100%</td>
+            </tr>
+            <tr class="hover:bg-slate-900/50">
+              <td class="p-3.5 font-bold text-white">20 Core Analysis Engines</td>
+              <td class="p-3.5 text-center text-emerald-400">[INCLUDED]</td>
+              <td class="p-3.5 text-center text-emerald-400">[INCLUDED]</td>
+              <td class="p-3.5 text-center text-emerald-400">[INCLUDED]</td>
+            </tr>
+            <tr class="hover:bg-slate-900/50">
+              <td class="p-3.5 font-bold text-white">Commercial Red Team Use</td>
+              <td class="p-3.5 text-center text-slate-500">Personal/CTF Only</td>
+              <td class="p-3.5 text-center text-emerald-400">[AUTHORIZED]</td>
+              <td class="p-3.5 text-center text-emerald-400">[AUTHORIZED]</td>
+            </tr>
+            <tr class="hover:bg-slate-900/50">
+              <td class="p-3.5 font-bold text-white">Executive Pentest Reporting</td>
+              <td class="p-3.5 text-center text-slate-500">Raw JSON</td>
+              <td class="p-3.5 text-center text-emerald-400">PDF, Markdown & JSON</td>
+              <td class="p-3.5 text-center text-cyan-400">Custom SIEM / API</td>
+            </tr>
+            <tr class="hover:bg-slate-900/50">
+              <td class="p-3.5 font-bold text-white">Custom Payload Mutator Rules</td>
+              <td class="p-3.5 text-center text-slate-500">14 Presets</td>
+              <td class="p-3.5 text-center text-emerald-400">Unlimited Custom Regex</td>
+              <td class="p-3.5 text-center text-cyan-400">Bespoke Defense Rules</td>
+            </tr>
+            <tr class="hover:bg-slate-900/50">
+              <td class="p-3.5 font-bold text-white">Support SLA</td>
+              <td class="p-3.5 text-center text-slate-500">Community Discord</td>
+              <td class="p-3.5 text-center text-emerald-400">Priority Email/Telegram</td>
+              <td class="p-3.5 text-center text-cyan-400">4-Hour Dedicated SLA</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- 6. PRICING FAQ -->
+    <!-- ============================================================== -->
+    <div class="space-y-4">
+      <div class="border-b border-cyber-border pb-2">
+        <h2 class="text-xl font-bold text-white font-mono flex items-center gap-2">
+          <span class="text-emerald-400">[FAQ]</span> Licensing & Billing Questions
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
+        <div class="bg-cyber-card border border-cyber-border rounded-xl p-4 space-y-1.5">
+          <h3 class="font-bold text-white font-mono flex items-center gap-2">
+            <span class="text-emerald-400">[Q]</span> Is the $199 Pro license really lifetime?
+          </h3>
+          <p class="text-slate-300 leading-relaxed">
+            Yes. You receive a perpetual license key valid for all v1.x major and minor releases forever. No recurring credit card charges.
+          </p>
+        </div>
+
+        <div class="bg-cyber-card border border-cyber-border rounded-xl p-4 space-y-1.5">
+          <h3 class="font-bold text-white font-mono flex items-center gap-2">
+            <span class="text-emerald-400">[Q]</span> Can I use Community Edition for commercial pentesting?
+          </h3>
+          <p class="text-slate-300 leading-relaxed">
+            Community Edition is intended for academic research, CTF competitions, and non-commercial learning. For billable client engagements, please use a Pro Operator license.
+          </p>
+        </div>
+
+        <div class="bg-cyber-card border border-cyber-border rounded-xl p-4 space-y-1.5">
+          <h3 class="font-bold text-white font-mono flex items-center gap-2">
+            <span class="text-emerald-400">[Q]</span> How are licenses delivered?
+          </h3>
+          <p class="text-slate-300 leading-relaxed">
+            Upon purchase, you immediately receive a cryptographically signed license file (<code class="text-emerald-400 font-mono">shadowcat.lic</code>) and a base64 string you can export anywhere.
+          </p>
+        </div>
+
+        <div class="bg-cyber-card border border-cyber-border rounded-xl p-4 space-y-1.5">
+          <h3 class="font-bold text-white font-mono flex items-center gap-2">
+            <span class="text-emerald-400">[Q]</span> What is your refund policy?
+          </h3>
+          <p class="text-slate-300 leading-relaxed">
+            We offer a 30-day, no-questions-asked refund guarantee. If the suite does not accelerate your operational workflow, simply reply to your receipt email.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ============================================================== -->
+  <!-- 7. FOOTER -->
+  <!-- ============================================================== -->
+  <footer class="border-t border-cyber-border bg-cyber-black mt-auto py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>SHADOW CAT Cyber Suite &bull; Air-Gapped Local Architecture</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="docs.html" class="hover:text-slate-300 transition-colors">Documentation</a>
+        <a href="pricing.html" class="hover:text-slate-300 transition-colors">Pricing</a>
+        <a href="about.html" class="hover:text-slate-300 transition-colors">About Us</a>
+        <a href="security.html" class="hover:text-slate-300 transition-colors">Security</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
